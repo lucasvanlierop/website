@@ -1,7 +1,10 @@
 html {
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    background-color: #c9ffc9;
+}
+
+a {
+    text-decoration: none;
 }
 
 body {
@@ -10,12 +13,74 @@ body {
     margin: 0 auto;
     max-width: 1200px;
     width: 80%;
+    background-color: white;
 }
 
 header {
-    background-color: #333333;
+    background-color: #233f41;
     color: #eeeeee;
     padding: 20px;
+}
+
+h1 {
+    margin: 0;
+}
+
+h1 .payoff {
+    font-size: 50%;
+}
+
+nav {
+    margin-top: 12px;
+    float: right;
+}
+
+nav ul {
+    margin: 0;
+    display: inline;
+}
+
+nav ul li {
+    float: left;
+    list-style: none;
+    margin: 0 0 0 10px;
+    text-transform: uppercase;
+    padding-right: 10px;
+    border-right: 1px solid white;
+}
+
+nav ul li:last-child {
+    border: none;
+}
+
+nav a {
+    color: white;
+}
+
+article {
+    height: 100%;
+}
+
+a.contact {
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.block {
+    list-style: none;
+    background-color: #e9f1f0;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.block h3 {
+    margin-top: 0;
+}
+
+.block-list
+{
+    margin: 0;
+    padding: 0;
 }
 
 .main {
@@ -35,14 +100,15 @@ header {
 
 .contact-links {
     margin: 0;
-    display: inline;
+    padding: 0;
 }
 
 .contact-links li {
-    float: left;
     list-style: none;
-    margin: 0 10px 0 0;
+
+    margin: 10px 0 0 0;
 }
+
 .contact-links li img {
     height: 20px;
 }

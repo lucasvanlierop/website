@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <head>
         <title>
             Lucas van Lierop, freelance software engineer #php #symfony #docker
@@ -9,67 +9,119 @@
     </head>
     <body>
         <header>
+            <nav>
+                <ul>
+                    <li><a href="#aboutme">About Me</a></li>
+                    <li><a href="#blocks">What I can do</a></li>
+                    <li><a href="#publicappearances">Public appearances</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
             <h1>
-                Lucas van Lierop, freelance software engineer
+                Lucas van Lierop |  <span class="payoff">freelance software engineer</span>
             </h1>
         </header>
 
-        <article class="main">
+        <article>
+            <a id="aboutme" class="smooth"></a>
+            <a href="#contact" class="contact">Contact me</a>
             <img class="photo" src="img/me-small.jpeg" alt="this is me" />
             <p>
                 I'm a software engineer specialized in creating, refactoring or containerizing (web) applications.
                 I'm also organizer of the <a href="http://conference.domcode.org">DomCode conference</a> and
                 <a href="http://meetup.com/domcode">DomCode meetup</a>.
             </p>
+        </article>
 
+        <a id="blocks"></a>
+        <article>
             <h2>
-               I can help you by:
+                Let me help you with:
             </h2>
-            <ul>
-                <li>
-                    Build modern applications
+            <ul class="block-list">
+                <li class="block">
+                    <h3>Build a modern (web) application.</h3>
+                    <p>
+                        I know my around in modern PHP and can help you by building a web application, API, microservice, middleware.
+                        with proper documentation, tests.
+                    </p>
                 </li>
-                <li>
-                    Refactor legacy applications
+
+                <li class="block">
+                    <h3>Refactor/improve legacy applications</h3>
+                    <p>
+                        Many software projects turn into legacy projects over time.
+                        Reasons being the use of older, maybe even obsolete technologies. Lack of tests, close coupling.
+                        When the application is still (very) valuable to your company I can help to modernize the application,
+                        set up a testing strategy, write documentation.
+                    </p>
                 </li>
-                <li>
-                    Containerize (web) applications
+
+                <li class="block">
+                    <h3>Containerize (web) applications</h3>
+
+                    <p>
+                        Many issues with applications are caused by differences in the dev/test/production pipeline.
+                        This can be prevented by making sure the stack of Operating system + web server + runtime + the application itself is consistent in every stage.
+                        Even more than with Virtual machines this can be achieved by using Linux containers.
+                    </p>
                 </li>
-                <li>
-                    Set up or improve testing strategies
+
+                <li class="block">
+                    <h3>
+                        Train and coach junior developers
+                    </h3>
+                    <p>
+                        Junior developers are often very eager to learn and grasp knowledge.
+                        I can help them learning, making the right choices...
+                    </p>
                 </li>
-                <li>
-                    Set up continuous integration / continuous deployment
+
+                <li class="block">
+                    <h3>et up continuous integration / continuous deployment</h3>
+
+                    <p>
+                        The era of waiting hours, days or even months before deploying a new version of an application to production are over.
+                        Current technologie always us to deploy fast and often.
+                        I can help preparing your application, setting up a CI server, setting up automatic deployment.
+                    </p>
                 </li>
-                <li>
-                    Coaching junior devs
-                </li>
-                <li>
-                    Reviewing/audit software
+
+                <li class="block">
+                    <h3>Reviewing/audit software</h3>
+
+                    <p>
+                        If your owner of an application and you're not sure about it's state I can do a review/audit and come up with
+                        warn about areas that need attention, suggest improvments.
+                    </p>
+
                 </li>
             </ul>
-
             <em>Keywords: PHP, Symfony, Javascript, TravisCI, Containers, Docker</em>
+        </article>
 
+        <article>
+            <a id="publicappearances"></a>
             <h2>
                 Public appearances
             </h2>
-            <ul>
-                <li>
+            <ul class="block-list">
+                <li class="block">
                     <strong>2016, October 25</strong>
                     <p>
                         Lightning talk: "containerizing desktop applications" at:
                         <a href="http://www.meetup.com/DomCode/events/234761190/">DomCode meetup</a>
                     </p>
                 </li>
-                <li>
+                <li class="block">
                     <strong>2016, june 23</strong>
                     <p>
                         Workshop: "Containerizing a production environment" at
                         <a href="https://www.phpconference.nl">Dutch PHP conference</a>
                     </p>
                 </li>
-                <li>
+                <li class="block">
                     <strong>2016, februari 25</strong>
                     <p>
                         Live demo "MIG welding" at
@@ -78,7 +130,7 @@
                         </a>
                     </p>
                 </li>
-                <li>
+                <li class="block">
                     <strong>2015, june 26-27</strong>
                     <p>
                         Unconference host at:
@@ -87,11 +139,16 @@
                 </li>
             </ul>
         </article>
-        <footer>
+
+        <article>
+            <a id="contact"></a>
             <h2>
                 Contact
             </h2>
             <ul class="contact-links">
+                <li>
+                    (t) +31653593790
+                </li>
                 <li>
                     <a href="mailto:me@lucasvanlierop.nl">me@lucasvanlierop.nl</a>
                 </li>
@@ -102,6 +159,18 @@
                     <a href="https://www.meetup.com/DomCode/members/154691052/"><img src="img/meetup-logo.svg" /></a>
                 </li>
             </ul>
-        </footer>
+        </article>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://github.com/kswedberg/jquery-smooth-scroll/blob/master/jquery.smooth-scroll.min.js"></script>
+        <script>
+            $('.smooth').on('click', function() {
+                $.smoothScroll({
+                    scrollElement: $('body'),
+                    scrollTarget: '#' + this.id
+                });
+
+                return false;
+            });
+        </script>
     </body>
 </html>
