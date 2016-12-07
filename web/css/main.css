@@ -1,0 +1,47 @@
+html {
+    height: 100%;
+    font-family: Arial, Helvetica, Verdana, SansSerif;
+    background-color: #c9ffc9;
+}
+
+body {
+    padding: 0 20px;
+    margin: 0 auto;
+    width: 80%;
+}
+
+header {
+    background-color: #333333;
+    color: #eeeeee;
+    padding: 20px;
+}
+
+.main {
+    background-color: #eeeeee;
+    padding: 20px;
+    height: 100%;
+    margin: 0;
+}
+
+.photo {
+    float: right;
+}
+
+.contact-links {
+    margin: 0;
+    display: inline;
+}
+
+.contact-links li {
+    float: left;
+    list-style: none;
+    margin: 0 10px 0 0;
+}
+.contact-links li img {
+    height: 20px;
+}
+
+footer {
+    background-color: #dddddd;
+    padding: 20px;
+}
