@@ -6,14 +6,15 @@
         </title>
         <link rel="stylesheet" href="css/normalize.css" />
         <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/palette.css" />
     </head>
     <body>
-        <header>
+        <header class="petrol">
             <nav>
                 <ul>
-                    <li><a href="#aboutme">About Me</a></li>
+                    <li><a href="#about-me">About Me</a></li>
                     <li><a href="#blocks">What I can do</a></li>
-                    <li><a href="#publicappearances">Public appearances</a></li>
+                    <li><a href="#public-appearances">Public appearances</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -23,25 +24,29 @@
             </h1>
         </header>
 
-        <article>
-            <a id="aboutme" class="smooth"></a>
-            <a href="#contact" class="contact">Contact me</a>
+        <section class="about-me mint">
+            <a id="about-me" class="smooth"></a>
+            <a href="#contact" class="contact dark-grey">Contact me</a>
             <img class="photo" src="img/me-small.jpeg" alt="this is me" />
             <p>
                 I'm a software engineer specialized in creating, refactoring or containerizing (web) applications.
                 I'm also organizer of the <a href="http://conference.domcode.org">DomCode conference</a> and
                 <a href="http://meetup.com/domcode">DomCode meetup</a>.
             </p>
-        </article>
 
-        <a id="blocks"></a>
-        <article>
+            <div style="clear:both;"></div>
+
+        </section>
+
+
+        <section class="skills lime">
+            <a id="blocks"></a>
             <h2>
                 Let me help you with:
             </h2>
             <ul class="block-list">
                 <li class="block">
-                    <h3>Build a modern (web) application.</h3>
+                    <h3>You want to build a modern (web) application.</h3>
                     <p>
                         I know my around in modern PHP and can help you by building a web application, API, microservice, middleware.
                         with proper documentation, tests.
@@ -49,7 +54,7 @@
                 </li>
 
                 <li class="block">
-                    <h3>Refactor/improve legacy applications</h3>
+                    <h3>You own a legacy application which needs improvement</h3>
                     <p>
                         Many software projects turn into legacy projects over time.
                         Reasons being the use of older, maybe even obsolete technologies. Lack of tests, close coupling.
@@ -59,7 +64,7 @@
                 </li>
 
                 <li class="block">
-                    <h3>Containerize (web) applications</h3>
+                    <h3>You want to migrate your application(s) to a containerized platform</h3>
 
                     <p>
                         Many issues with applications are caused by differences in the dev/test/production pipeline.
@@ -70,7 +75,7 @@
 
                 <li class="block">
                     <h3>
-                        Train and coach junior developers
+                        You want to your (junior) developers to be trained or coached
                     </h3>
                     <p>
                         Junior developers are often very eager to learn and grasp knowledge.
@@ -79,7 +84,7 @@
                 </li>
 
                 <li class="block">
-                    <h3>et up continuous integration / continuous deployment</h3>
+                    <h3>You would like to be able to deploy any time of the day but your current setup doesn't let you do that.</h3>
 
                     <p>
                         The era of waiting hours, days or even months before deploying a new version of an application to production are over.
@@ -89,7 +94,7 @@
                 </li>
 
                 <li class="block">
-                    <h3>Reviewing/audit software</h3>
+                    <h3>You own an application and you want to know how well its built</h3>
 
                     <p>
                         If your owner of an application and you're not sure about it's state I can do a review/audit and come up with
@@ -99,10 +104,10 @@
                 </li>
             </ul>
             <em>Keywords: PHP, Symfony, Javascript, TravisCI, Containers, Docker</em>
-        </article>
+        </section>
 
-        <article>
-            <a id="publicappearances"></a>
+        <section class="public-appearances medium-petrol">
+            <a id="public-appearances"></a>
             <h2>
                 Public appearances
             </h2>
@@ -138,9 +143,9 @@
                     </p>
                 </li>
             </ul>
-        </article>
+        </section>
 
-        <article>
+        <section class="contact light-reddish-grey">
             <a id="contact"></a>
             <h2>
                 Contact
@@ -159,7 +164,7 @@
                     <a href="https://www.meetup.com/DomCode/members/154691052/"><img src="img/meetup-logo.svg" /></a>
                 </li>
             </ul>
-        </article>
+        </section>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="https://github.com/kswedberg/jquery-smooth-scroll/blob/master/jquery.smooth-scroll.min.js"></script>
         <script>

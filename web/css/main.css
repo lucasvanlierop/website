@@ -3,23 +3,34 @@ html {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
+html, body {
+    min-height: 100% !important;
+    width: 100% !important;
+    margin: 0;
+    padding: 0;
+    color: #222222;
+}
+
+
 a {
     text-decoration: none;
+    color: #444444;
+    font-style: italic;
 }
 
 body {
     line-height: 1.4;
-    padding: 0 20px;
-    margin: 0 auto;
-    max-width: 1200px;
-    width: 80%;
     background-color: white;
 }
 
 header {
-    background-color: #233f41;
     color: #eeeeee;
     padding: 20px;
+}
+
+h1, h2, h3 {
+    letter-spacing: .6px;
+    font-weight: 300;
 }
 
 h1 {
@@ -57,28 +68,37 @@ nav a {
     color: white;
 }
 
-article {
-    height: 100%;
+section, header {
+    padding: 20px 20%;
+    clear: both;
+    border-bottom: solid 1px white;
+}
+
+section h2 {
+    text-transform: uppercase;
 }
 
 a.contact {
     font-size: 200%;
     font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
 }
 
 .block {
     list-style: none;
-    background-color: #e9f1f0;
     padding: 20px;
     margin-top: 20px;
+    background: rgba(200, 200, 200, .1);
+    border: solid 1px lightgrey;
+    border-radius: 3px;
 }
 
 .block h3 {
     margin-top: 0;
 }
 
-.block-list
-{
+.block-list {
     margin: 0;
     padding: 0;
 }
