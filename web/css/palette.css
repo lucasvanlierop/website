@@ -1,53 +1,105 @@
-.citron {
-    background-color: #e6d681;
+.palette-bg-light-grey {
+    background-color: #9da9a9;
 }
 
-.orange {
-    background-color: #e9be52;
+.palette-light-grey {
+    color: #9da9a9;
 }
 
-.dark-grey {
+.palette-bg-grey {
     background-color: #626866;
     color: white;
 }
 
-.mint {
-    background-color: #ccd8c0;
+.palette-grey {
+    color: #626866;
 }
 
-.light-grey {
-    background-color: #9da9a9;
-}
-
-.reddish-grey {
-    background-color: #998f8a;
-}
-
-.light-reddish-grey {
+.palette-bg-light-reddish-grey {
     background-color: #bdb9ae;
 }
 
-.lime {
+.palette-light-reddish-grey {
+    color: #bdb9ae;
+}
+
+.palette-bg-reddish-grey {
+    background-color: #998f8a;
+}
+
+.palette-reddish-grey {
+    color: #998f8a;
+}
+
+.palette-bg-lime {
     background-color: #dcd881;
 }
 
-.dark-mint {
+.palette-lime {
+    color: #dcd881;
+}
+
+.palette-bg-citron {
+    background-color: #e6d681;
+}
+
+.palette-citron {
+    color: #e6d681;
+}
+
+.palette-bg-orange {
+    background-color: #e9be52;
+}
+
+.palette-orange {
+    color: #e9be52;
+}
+
+.palette-bg-mint {
+    background-color: #ccd8c0;
+}
+
+.palette-mint {
+    color: #ccd8c0;
+}
+
+.palette-bg-dark-mint {
     background-color: #7db5aa;
 }
 
-.medium-petrol {
+.palette-dark-mint {
+    color: #7db5aa;
+}
+
+.palette-bg-medium-petrol {
     background-color: #78b5b7;
 }
 
-.petrol {
+.palette-medium-petrol {
+    color: #78b5b7;
+}
+
+.palette-bg-petrol {
     background-color: #3d7a8d;
 }
 
-.salmon {
+.palette-petrol {
+    color: #3d7a8d;
+}
+
+.palette-bg-salmon {
     background-color: #e68f81;
 }
 
-.rose {
+.palette-salmon {
+    color: #e68f81;
+}
+
+.palette-bg-rose {
     background-color: #d57485;
     color: white;
+}
+
+.palette-rose {
+    color: #d57485;
 }

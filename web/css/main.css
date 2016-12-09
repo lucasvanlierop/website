@@ -83,15 +83,21 @@ a.contact {
     font-weight: bold;
     padding: 5px 10px;
     border-radius: 4px;
+    color: white;
 }
 
 .block {
     list-style: none;
     padding: 20px;
-    margin-top: 20px;
-    background: rgba(200, 200, 200, .1);
+    margin-top:40px;
+    background: rgba(50, 50, 50, .05);
     border: solid 1px lightgrey;
     border-radius: 3px;
+}
+
+.block h3 .fa {
+    font-size: 200%;
+    margin-right: 10px;
 }
 
 .block h3 {
