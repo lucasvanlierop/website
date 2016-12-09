@@ -100,6 +100,10 @@ a.contact {
     margin-right: 10px;
 }
 
+.block h3 .fa-plus-circle {
+    font-size: 100%;margin:0;
+}
+
 .block h3 {
     margin-top: 0;
 }
