@@ -129,8 +129,8 @@ a.contact {
     margin: 10px 0 0 0;
 }
 
-.contact-links li img {
-    height: 20px;
+.contact-links li i {
+    font-size: 20px;
 }
 
 footer {
