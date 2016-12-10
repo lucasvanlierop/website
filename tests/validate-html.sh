@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 VALIDATE_OUTPUT=$(
     docker run \
     --rm \
