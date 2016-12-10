@@ -9,4 +9,5 @@ PROD_FILE='docker-compose.yml'
 test:
     docker-compose -f ${PROD_FILE} up -d --build --force-recreate
     tests/smoke-test.sh
+    tests/validate-html.sh
     docker-compose -f ${PROD_FILE} stop
