@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+# Pull image first so no docker output ends up in stderr later on.
+docker pull magnetikonline/html5validator:latest
+
 # Note that in order to capture the commands stderr its' redirected to stdout
-# While stdout itself is redirected to a third filedescriptor which is outputted later on.
+# While stdout itself is redirected to a third filedescriptor which is outputted afterwards.
 { VALIDATE_ERRORS=$(
     docker run \
     --rm \
