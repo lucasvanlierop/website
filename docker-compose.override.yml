@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  nginx:
+    container_name: lucasvanlierop.nl-nginx
+    volumes:
+      - ./web:/usr/share/nginx/html
