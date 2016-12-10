@@ -2,7 +2,9 @@ version: '2'
 
 services:
   nginx:
-    container_name: lucasvanlierop.nl-nginx
-    image: nginx:1.11-alpine
+    container_name: lucasvanlierop-website-nginx
+    image: lucasvanlierop/website-nginx
+    build:
+      context: .
     ports:
       - 80:80
