@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <base href="/">
         <meta charset="UTF-8">
         <title>
             Lucas van Lierop, freelance software engineer #php #symfony #docker
@@ -14,22 +15,18 @@
         <header class="palette-bg-petrol">
             <nav>
                 <ul>
-                    <li><a href="#about-me">About Me</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#expertise">My expertise</a></li>
-                    <li><a href="#work">My work</a></li>
-                    <li><a href="#public-appearances">Public appearances</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/#services">Services</a></li>
+                    <li><a href="/work/">My work</a></li>
+                    <li><a href="/#contact">Contact</a></li>
                 </ul>
             </nav>
 
-            <h1>
-                Lucas van Lierop | <span class="payoff">freelance software engineer</span>
-            </h1>
+            <a href="/"><h1> Lucas van Lierop | <span class="payoff">freelance software engineer</span></h1></a>
         </header>
 
         {% block content %}
-            {{ page.content }}
+        {{ page.content }}
         {% endblock %}
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

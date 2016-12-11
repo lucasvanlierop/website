@@ -1,14 +1,26 @@
 #!/usr/bin/env bash
 
-declare -i timeout=5
+set -e
+#set -x
 
-while ! TEST_OUTPUT=`curl -s --fail http://localhost`;
-    do sleep 0.1;
-done
+assert_page_contains() {
+    local test_url="$1";
+    local expected_content="$2"
+    local test_output
 
-EXPECTED_CONTENT='Lucas van Lierop | freelance software engineer'
+    declare -i timeout=5
 
-## Assert server response
-if grep -q "$EXPECTED_CONTENT" <<<$TEST_OUTPUT; then
-    echo "Failed asserting that '${TEST_OUTPUT}' contains '$EXPECTED_CONTENT'" && exit 1;
-fi
+    while ! test_output=`curl -s --fail ${test_url}`;
+        do sleep 0.1;
+    done
+
+    if grep -q '$expected_content' <<<$test_output; then
+        echo "Failed asserting that '${test_output}' contains '$expected_content'" && exit 1;
+    fi
+}
+
+assert_page_contains 'http://localhost' 'Lucas van Lierop | freelance software engineer'
+assert_page_contains 'http://localhost/about/' 'About Lucas van Lierop'
+assert_page_contains 'http://localhost/expertise/' 'My expertise'
+assert_page_contains 'http://localhost/public-appearances/' 'Public appearances'
+assert_page_contains 'http://localhost/work/' 'My work'

@@ -37,6 +37,10 @@ h1 {
     margin: 0;
 }
 
+a h1 {
+    color: white;
+}
+
 h1 .payoff {
     font-size: 50%;
 }
@@ -78,7 +82,7 @@ section h2 {
     text-transform: uppercase;
 }
 
-a.contact {
+a.button {
     font-size: 200%;
     font-weight: bold;
     padding: 5px 10px;
