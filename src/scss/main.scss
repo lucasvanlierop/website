@@ -13,7 +13,6 @@ html, body {
 
 
 a {
-    text-decoration: none;
     color: #444444;
     font-style: italic;
 }
@@ -26,6 +25,10 @@ body {
 header {
     color: #eeeeee;
     padding: 20px;
+
+    a {
+        text-decoration: none;
+    }
 }
 
 h1, h2, h3 {
@@ -70,6 +73,7 @@ nav ul li:last-child {
 
 nav a {
     color: white;
+    text-decoration: none;
 }
 
 section, header {
@@ -88,6 +92,7 @@ a.button {
     padding: 5px 10px;
     border-radius: 4px;
     color: white;
+    text-decoration: none;
 }
 
 .block {
