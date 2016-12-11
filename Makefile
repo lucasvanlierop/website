@@ -2,15 +2,18 @@
 
 SHELL=/bin/bash
 
-all: test
+all: build
 
 PROD_FILE='docker-compose.yml'
 
-sass:
-    docker-compose run sass --update /app/web/sass:/app/web/css
+spress:
+    docker-compose run spress site:build
 
-build: sass
-    docker-compose -f ${PROD_FILE} up -d --build --force-recreate
+sass:
+    docker-compose run sass --update /app/src/scss:/app/build/css
+
+build: sass spress
+    docker-compose -f ${PROD_FILE} up -d --build --force-recreate --remove-orphans
 
 test: build
     tests/smoke-test.sh

@@ -3,14 +3,22 @@ version: '2'
 services:
   app:
     volumes:
-      - ./web:/usr/share/nginx/html
-
+      - ./build:/usr/share/nginx/html
   sass:
+    container_name: lucasvanlierop-website-sass
     image: lucasvanlierop/website-sass
     build:
       context: ./
       dockerfile: ./docker/sass/Dockerfile
-    command: --watch /app/web/sass:/app/web/css
+    command: --watch /app/src/scss:/app/src/content/css
+    user: $HOST_UID:$HOST_GID
+    volumes:
+      - ./:/app
+
+  spress:
+    container_name: lucasvanlierop-website-spress
+    image: pantelm/spress
+    command: site:build --watch
     user: $HOST_UID:$HOST_GID
     volumes:
       - ./:/app

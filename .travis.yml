@@ -11,7 +11,7 @@ before_script:
   - unexpand -t 4 Makefile > Makefile.tmp && mv Makefile.tmp Makefile
 
 script:
-  - make
+  - make test
 
 after_failure:
   - docker-compose logs
