@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>
-            Lucas van Lierop, freelance software engineer #php #symfony #docker
-        </title>
-        <link rel="stylesheet" href="css/normalize.css"/>
-        <link rel="stylesheet" href="css/main.css"/>
-        <link rel="stylesheet" href="css/palette.css"/>
-        <script src="https://use.fontawesome.com/eb213707b3.js"></script>
-    </head>
-    <body>
-        <header class="palette-bg-petrol">
-            <nav>
-                <ul>
-                    <li><a href="#about-me">About Me</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#expertise">My expertise</a></li>
-                    <li><a href="#work">My work</a></li>
-                    <li><a href="#public-appearances">Public appearances</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-
-            <h1>
-                Lucas van Lierop | <span class="payoff">freelance software engineer</span>
-            </h1>
-        </header>
+---
+layout: "default"
+---
 
         <section class="about-me">
             <a id="about-me" class="smooth"></a>
@@ -586,17 +560,3 @@
                 </li>
             </ul>
         </section>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="https://github.com/kswedberg/jquery-smooth-scroll/blob/master/jquery.smooth-scroll.min.js"></script>
-        <script>
-            $('.smooth').on('click', function () {
-                $.smoothScroll({
-                    scrollElement: $('body'),
-                    scrollTarget: '#' + this.id
-                });
-
-                return false;
-            });
-        </script>
-    </body>
-</html>
