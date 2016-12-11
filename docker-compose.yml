@@ -1,10 +1,11 @@
 version: '2'
 
 services:
-  nginx:
-    container_name: lucasvanlierop-website-nginx
-    image: lucasvanlierop/website-nginx
+  app:
+    container_name: lucasvanlierop-website-app
+    image: lucasvanlierop/website-app
     build:
-      context: .
+      context: ./
+      dockerfile: ./docker/app/Dockerfile
     ports:
       - 80:80

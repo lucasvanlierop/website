@@ -1,6 +1,16 @@
 version: '2'
 
 services:
-  nginx:
+  app:
     volumes:
       - ./web:/usr/share/nginx/html
+
+  sass:
+    image: lucasvanlierop/website-sass
+    build:
+      context: ./
+      dockerfile: ./docker/sass/Dockerfile
+    command: --watch /app/web/sass:/app/web/css
+    user: $HOST_UID:$HOST_GID
+    volumes:
+      - ./:/app
