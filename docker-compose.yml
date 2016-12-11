@@ -2,8 +2,8 @@ version: '2'
 
 services:
   app:
-    container_name: lucasvanlierop-website-app
-    image: lucasvanlierop/website-app
+    container_name: lucasvanlierop-website
+    image: lucasvanlierop/website
     build:
       context: ./
       dockerfile: ./docker/app/Dockerfile

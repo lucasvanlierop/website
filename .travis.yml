@@ -16,6 +16,10 @@ script:
 after_failure:
   - docker-compose logs
 
+after_success:
+  - docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then docker push lucasvanlierop/website:latest; fi
+
 branches:
   only:
     - master

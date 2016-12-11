@@ -9,7 +9,7 @@ docker pull magnetikonline/html5validator:latest
     docker run \
     --rm \
     --name=html-validator \
-    --network=container:lucasvanlierop-website-app \
+    --network=container:lucasvanlierop-website \
     magnetikonline/html5validator \
     java -jar /root/build/validator.nu/vnu.jar http://app \
     2>&1 1>&3-
