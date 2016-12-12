@@ -5,6 +5,7 @@ services:
     volumes:
       - ./build:/usr/share/nginx/html
   sass:
+    restart: always
     container_name: lucasvanlierop-website-sass
     image: lucasvanlierop/website-sass
     build:
@@ -16,6 +17,7 @@ services:
       - ./:/app
 
   spress:
+    restart: always
     container_name: lucasvanlierop-website-spress
     image: pantelm/spress
     command: site:build --watch
