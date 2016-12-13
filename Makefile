@@ -10,7 +10,7 @@ spress:
     docker-compose run spress site:build
 
 sass:
-    docker-compose run sass --update /app/src/scss:/app/build/css
+    docker-compose run sass --update /app/src/scss:/app/src/content/css
 
 build: sass spress
     docker-compose -f ${PROD_FILE} up -d --build --force-recreate --remove-orphans
