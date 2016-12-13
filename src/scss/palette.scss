@@ -1,105 +1,119 @@
+$palette-light-grey: #9da9a9;
+$palette-grey: #626866;
+$palette-light-reddish-grey: #bdb9ae;
+$palette-reddish-grey: #998f8a;
+$palette-lime: #dcd881;
+$palette-citron: #e6d681;
+$palette-orange: #e9be52;
+$palette-mint: #ccd8c0;
+$palette-dark-mint: #7db5aa;
+$palette-medium-petrol: #78b5b7;
+$palette-petrol: #3d7a8d;
+$palette-salmon: #e68f81;
+$palette-rose: #d57485;
+
 .palette-bg-light-grey {
-    background-color: #9da9a9;
+    background-color: $palette-light-grey;
 }
 
 .palette-light-grey {
-    color: #9da9a9;
+    color: $palette-light-grey;
 }
 
 .palette-bg-grey {
-    background-color: #626866;
+    background-color: $palette-grey;
     color: white;
 }
 
 .palette-grey {
-    color: #626866;
+    color: $palette-grey;
 }
 
 .palette-bg-light-reddish-grey {
-    background-color: #bdb9ae;
+    background-color: $palette-light-reddish-grey;
 }
 
 .palette-light-reddish-grey {
-    color: #bdb9ae;
+    color: $palette-light-reddish-grey;
 }
 
 .palette-bg-reddish-grey {
-    background-color: #998f8a;
+    background-color: $palette-reddish-grey;
 }
 
 .palette-reddish-grey {
-    color: #998f8a;
+    color: $palette-reddish-grey;
 }
 
 .palette-bg-lime {
-    background-color: #dcd881;
+    background-color: $palette-lime;
 }
 
 .palette-lime {
-    color: #dcd881;
+    color: $palette-lime;
 }
 
 .palette-bg-citron {
-    background-color: #e6d681;
+    background-color: $palette-citron;
 }
 
 .palette-citron {
-    color: #e6d681;
+    color: $palette-citron;
 }
 
 .palette-bg-orange {
-    background-color: #e9be52;
+    background-color: $palette-orange;
 }
 
 .palette-orange {
-    color: #e9be52;
+    color: $palette-orange;
 }
 
 .palette-bg-mint {
-    background-color: #ccd8c0;
+    background-color: $palette-mint;
 }
 
 .palette-mint {
-    color: #ccd8c0;
+    color: $palette-mint;
 }
 
 .palette-bg-dark-mint {
-    background-color: #7db5aa;
+    background-color: $palette-dark-mint;
 }
 
 .palette-dark-mint {
-    color: #7db5aa;
+    color: $palette-dark-mint;
 }
 
 .palette-bg-medium-petrol {
-    background-color: #78b5b7;
+    background-color: $palette-medium-petrol;
 }
 
 .palette-medium-petrol {
-    color: #78b5b7;
+    color: $palette-medium-petrol;
 }
 
 .palette-bg-petrol {
-    background-color: #3d7a8d;
+    background-color: $palette-petrol;
 }
 
 .palette-petrol {
-    color: #3d7a8d;
+    color: $palette-petrol;
 }
 
 .palette-bg-salmon {
-    background-color: #e68f81;
+    background-color: $palette-salmon;
 }
 
 .palette-salmon {
-    color: #e68f81;
+    color: $palette-salmon;
 }
 
 .palette-bg-rose {
-    background-color: #d57485;
+    background-color: $palette-rose;
     color: white;
 }
 
 .palette-rose {
-    color: #d57485;
+    color: $palette-rose;
 }
