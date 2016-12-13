@@ -29,7 +29,6 @@ assert_valid_html() {
 
 assert_valid_html 'http://app'
 assert_valid_html 'http://app/about/'
-assert_valid_html 'http://app/contact/'
 assert_valid_html 'http://app/expertise/'
 assert_valid_html 'http://app/public-appearances/'
 assert_valid_html 'http://app/work/'

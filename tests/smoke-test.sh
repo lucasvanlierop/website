@@ -20,7 +20,6 @@ assert_page_contains() {
 }
 
 assert_page_contains 'http://localhost' 'Lucas van Lierop | freelance software engineer'
-assert_page_contains 'http://localhost/about/' 'Contact'
 assert_page_contains 'http://localhost/about/' 'About Lucas van Lierop'
 assert_page_contains 'http://localhost/expertise/' 'My expertise'
 assert_page_contains 'http://localhost/public-appearances/' 'Public appearances'
