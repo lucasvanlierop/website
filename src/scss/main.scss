@@ -13,10 +13,9 @@ html, body {
     color: #222222;
 }
 
-
 a {
-    color: #444444;
-    font-style: italic;
+    color: $palette-petrol;
+    text-decoration: none;
 }
 
 body {
@@ -75,7 +74,6 @@ nav ul li:last-child {
 
 nav a {
     color: white;
-    text-decoration: none;
 }
 
 section, header {
@@ -94,7 +92,6 @@ a.button {
     padding: 5px 10px;
     border-radius: 4px;
     color: white;
-    text-decoration: none;
 }
 
 .block {
