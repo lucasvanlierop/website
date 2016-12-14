@@ -10,7 +10,7 @@ html, body {
     width: 100% !important;
     margin: 0;
     padding: 0;
-    color: #222222;
+    color: #222;
 }
 
 a {
@@ -24,11 +24,13 @@ body {
 }
 
 header {
-    color: #eeeeee;
+    color: #eee;
     padding: 20px;
 
     a {
         text-decoration: none;
+        color: white;
+        float: left;
     }
 }
 
@@ -41,12 +43,9 @@ h1 {
     margin: 0;
 }
 
-header a {
-    color: white;
-}
-
 h1 .payoff {
     font-size: 50%;
+    display: block;
 }
 
 nav {
@@ -59,9 +58,8 @@ nav {
         li {
             float: left;
             list-style: none;
-            margin: 0 0 0 10px;
+            padding: 0 10px;
             text-transform: uppercase;
-            padding-right: 10px;
             border-right: 1px solid white;
 
             &:last-child {
@@ -76,9 +74,18 @@ nav {
 }
 
 section, header, footer {
-    padding: 20px 20%;
     clear: both;
     border-bottom: solid 1px white;
+    padding: 10px 20px;
+}
+
+header:after  {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
 }
 
 section h2 {
@@ -100,7 +107,7 @@ a.button {
 .block {
     list-style: none;
     padding: 20px;
-    margin-top:40px;
+    margin-top: 40px;
     background: rgba(50, 50, 50, .05);
     border: solid 1px lightgrey;
     border-radius: 3px;
@@ -125,7 +132,7 @@ a.button {
 }
 
 .main {
-    background-color: #eeeeee;
+    background-color: #eee;
     padding: 20px;
     height: 100%;
     margin: 0;
@@ -154,5 +161,42 @@ a.button {
 }
 
 footer {
-    background-color: #dddddd;
+    background-color: #ddd;
+}
+
+@media screen and (min-width: 640px) {
+    section, header, footer {
+        padding: 20px 20%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    body {
+        font-size: 1.3em;
+    }
+    .block {
+        margin-top: 20px;
+    }
+    h1 .payoff {
+        display: none;
+    }
+    header {
+        a {
+            text-align: center;
+            float: none;
+        }
+        nav {
+            float: none;
+
+            ul {
+                display: block;
+                margin: 0 auto;
+
+                li {
+                    float: none;
+                    display: inline-block;
+                }
+            }
+        }
+    }
 }

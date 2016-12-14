@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <base href="/">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
         <meta charset="UTF-8">
         <title>
             {{ page.name }}
@@ -14,15 +15,14 @@
     </head>
     <body>
         <header class="palette-bg-petrol">
+            <a href="/"><h1>Lucas van Lierop<span class="payoff">freelance software engineer</span></h1></a>
             <nav>
-                <ul>
+                <ul>{% spaceless %}
                     <li><a href="/about/">About</a></li>
                     <li><a href="/work/">Work</a></li>
                     <li><a href="/expertise/">Expertise</a></li>
-                </ul>
+                {% endspaceless %}</ul>
             </nav>
-
-            <a href="/"><h1> Lucas van Lierop | <span class="payoff">freelance software engineer</span></h1></a>
         </header>
 
         {% block content %}
