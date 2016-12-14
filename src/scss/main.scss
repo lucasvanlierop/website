@@ -52,28 +52,27 @@ h1 .payoff {
 nav {
     margin-top: 12px;
     float: right;
-}
+    ul {
+        margin: 0;
+        display: inline;
 
-nav ul {
-    margin: 0;
-    display: inline;
-}
+        li {
+            float: left;
+            list-style: none;
+            margin: 0 0 0 10px;
+            text-transform: uppercase;
+            padding-right: 10px;
+            border-right: 1px solid white;
 
-nav ul li {
-    float: left;
-    list-style: none;
-    margin: 0 0 0 10px;
-    text-transform: uppercase;
-    padding-right: 10px;
-    border-right: 1px solid white;
-}
+            &:last-child {
+                border: none;
+            }
+        }
+    }
 
-nav ul li:last-child {
-    border: none;
-}
-
-nav a {
-    color: white;
+    a {
+        color: white;
+    }
 }
 
 section, header, footer {
@@ -105,19 +104,19 @@ a.button {
     background: rgba(50, 50, 50, .05);
     border: solid 1px lightgrey;
     border-radius: 3px;
-}
 
-.block h3 .fa {
-    font-size: 200%;
-    margin-right: 10px;
-}
+    h3 {
+        margin-top: 0;
 
-.block h3 .fa-plus-circle {
-    font-size: 100%;margin:0;
-}
-
-.block h3 {
-    margin-top: 0;
+        .fa {
+            font-size: 200%;
+            margin-right: 10px;
+        }
+        .fa-plus-circle {
+            font-size: 100%;
+            margin: 0;
+        }
+    }
 }
 
 .block-list {
@@ -143,16 +142,15 @@ a.button {
 .contact-links {
     margin: 0;
     padding: 0;
-}
 
-.contact-links li {
-    list-style: none;
+    li {
+        list-style: none;
+        margin: 10px 0 0 0;
 
-    margin: 10px 0 0 0;
-}
-
-.contact-links li i {
-    font-size: 20px;
+        i {
+            font-size: 20px;
+        }
+    }
 }
 
 footer {
