@@ -13,6 +13,11 @@ html, body {
     color: #222;
 }
 
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
 a {
     color: $palette-petrol;
     text-decoration: none;
