@@ -167,6 +167,12 @@ footer {
     background-color: #ddd;
 }
 
+abbr[title] {
+    cursor: help;
+    border-bottom: 1px dashed $palette-grey;
+    text-decoration: none;
+}
+
 @media screen and (min-width: 640px) {
     section, header, footer {
         padding: 20px 20%;
@@ -201,5 +207,14 @@ footer {
                 }
             }
         }
+    }
+    abbr[title] {
+        border: none;
+    }
+    abbr[title]:before {
+        content: attr(title) " ("
+    }
+    abbr[title]:after {
+        content: ")"
     }
 }
