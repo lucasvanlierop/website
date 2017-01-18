@@ -13,11 +13,6 @@ html, body {
     color: #222;
 }
 
-ul, li {
-    margin: 0;
-    padding: 0;
-}
-
 a {
     color: $palette-petrol;
     text-decoration: none;
@@ -58,9 +53,12 @@ nav {
     float: right;
     ul {
         margin: 0;
+        padding: 0;
         display: inline;
 
         li {
+            margin: 0;
+            padding: 0;
             float: left;
             list-style: none;
             padding: 0 10px;
