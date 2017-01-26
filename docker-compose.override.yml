@@ -3,7 +3,19 @@ version: '2'
 services:
   app:
     volumes:
-      - ./build:/usr/share/nginx/html
+      - ./build:/usr/share/nginx/html:ro
+      - ./docker/app/nginx.conf:/etc/nginx/nginx.conf:ro
+    environment:
+      VIRTUAL_HOST: 'dev.stats.lucasvanlierop.nl'
+
+  piwik:
+    env_file:
+      - ./docker/piwik/piwik.env
+
+  piwik-db:
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
   sass:
     restart: always
     container_name: lucasvanlierop-website-sass
@@ -23,4 +35,6 @@ services:
     command: site:build --watch
     user: $HOST_UID:$HOST_GID
     volumes:
-      - ./:/app
+      - ./build:/app/build
+      - ./config.yml:/app/config.yml
+      - ./src:/app/src
