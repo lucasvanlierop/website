@@ -4,13 +4,14 @@ SHELL=/bin/bash
 
 all: build
 
+CI_FILE='docker-compose.ci.yml'
 PROD_FILE='docker-compose.prod.yml'
 
 spress:
-    docker-compose run spress site:build
+    docker-compose -f ${CI_FILE} run spress site:build
 
 sass:
-    docker-compose run sass --update /app/src/scss:/app/src/content/css
+    docker-compose -f ${CI_FILE} run sass --update /app/src/scss:/app/src/content/css
 
 build: sass spress
     docker-compose -f ${PROD_FILE} up -d --build --force-recreate --remove-orphans

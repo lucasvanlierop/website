@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  sass:
+    extends:
+      file: docker-compose.override.yml
+      service: sass
+
+  spress:
+    extends:
+      file: docker-compose.override.yml
+      service: spress
