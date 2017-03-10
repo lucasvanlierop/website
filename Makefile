@@ -4,7 +4,7 @@ SHELL=/bin/bash
 
 all: build
 
-PROD_FILE='docker-compose.yml'
+PROD_FILE='docker-compose.prod.yml'
 
 spress:
     docker-compose run spress site:build

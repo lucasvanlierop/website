@@ -1,9 +1,22 @@
 version: '2'
 
+networks:
+  traefik:
+    external:
+      name: traefik_webgateway
+
 services:
   app:
     volumes:
       - ./build:/usr/share/nginx/html
+    networks:
+      default:
+      traefik:
+    labels:
+      - "traefik.backend=lucasvanlierop-web"
+      - "traefik.frontend.rule=Host:lucasvanlierop.nl.localhost"
+      - "traefik.port=80"
+      - "traefik.docker.network=traefik_webgateway"
   sass:
     restart: always
     container_name: lucasvanlierop-website-sass
