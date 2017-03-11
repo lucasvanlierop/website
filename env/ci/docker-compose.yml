@@ -7,7 +7,7 @@ services:
       service: app
     build:
       context: ../../
-      dockerfile: ../../docker/app/Dockerfile
+      dockerfile: docker/app/Dockerfile
   sass:
     extends:
       file: ../default/docker-compose.yml

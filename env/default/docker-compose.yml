@@ -12,7 +12,7 @@ services:
     image: lucasvanlierop/website-sass
     build:
       context: ../../
-      dockerfile: ../../docker/sass/Dockerfile
+      dockerfile: docker/sass/Dockerfile
     command: --watch /app/src/scss:/app/src/content/css
     user: $HOST_UID:$HOST_GID
     volumes:
