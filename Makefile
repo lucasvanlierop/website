@@ -4,8 +4,8 @@ SHELL=/bin/bash
 
 all: build
 
-CI_FILE='docker-compose.ci.yml'
-PROD_FILE='docker-compose.prod.yml'
+CI_FILE='env/ci/docker-compose.yml'
+PROD_FILE='env/prod/docker-compose.yml'
 
 spress:
     docker-compose -f ${CI_FILE} run spress site:build

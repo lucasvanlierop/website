@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  app:
+    extends:
+      file: ../default/docker-compose.yml
+      service: app
+    build:
+      context: ../../
+      dockerfile: ../../docker/app/Dockerfile
+  sass:
+    extends:
+      file: ../default/docker-compose.yml
+      service: sass
+
+  spress:
+    extends:
+      file: ../default/docker-compose.yml
+      service: spress
