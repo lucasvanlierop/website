@@ -1,9 +1,7 @@
-version: '2'
+version: '3'
 
 services:
-  app:
-    extends:
-      file: ../default/docker-compose.yml
-      service: app
-    ports:
-      - 80:80
+   app:
+      image: lucasvanlierop/website
+      ports:
+        - 80:80
