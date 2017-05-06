@@ -16,6 +16,9 @@ sass:
 build: sass spress
     docker-compose -f ${PROD_FILE} up -d --build --force-recreate --remove-orphans
 
+start:
+    docker-compose up
+
 test: build
     tests/smoke-test.sh
     tests/validate-html.sh
