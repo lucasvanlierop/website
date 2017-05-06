@@ -2,12 +2,12 @@ version: '2'
 
 services:
   app:
-    restart: always
+    restart: on_failure
     container_name: lucasvanlierop-website
     image: lucasvanlierop/website
 
   sass:
-    restart: always
+    restart: on_failure
     container_name: lucasvanlierop-website-sass
     image: lucasvanlierop/website-sass
     build:
@@ -19,7 +19,7 @@ services:
       - ../../:/app
 
   spress:
-    restart: always
+    restart: on_failure
     container_name: lucasvanlierop-website-spress
     image: pantelm/spress
     command: site:build --watch
