@@ -11,7 +11,7 @@ services:
       file: env/default/docker-compose.yml
       service: app
     volumes:
-      - ./build:/usr/share/nginx/html
+      - ./output_dev:/usr/share/nginx/html
     networks:
       default:
       traefik:
@@ -25,7 +25,7 @@ services:
       file: env/default/docker-compose.yml
       service: sass
 
-  spress:
+  sculpin:
     extends:
       file: env/default/docker-compose.yml
-      service: spress
+      service: sculpin

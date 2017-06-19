@@ -13,7 +13,7 @@ services:
       file: ../default/docker-compose.yml
       service: sass
 
-  spress:
+  sculpin:
     extends:
       file: ../default/docker-compose.yml
-      service: spress
+      service: sculpin
