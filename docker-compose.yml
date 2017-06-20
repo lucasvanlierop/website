@@ -16,6 +16,7 @@ services:
       default:
       traefik:
     labels:
+      - "traefik.enable=true"
       - "traefik.backend=lucasvanlierop-web"
       - "traefik.frontend.rule=Host:lucasvanlierop.nl.localhost"
       - "traefik.port=80"
