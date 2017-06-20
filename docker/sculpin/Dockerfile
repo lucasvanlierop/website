@@ -14,7 +14,7 @@ RUN apk update \
     && php composer-setup.php \
     && php -r "unlink('composer-setup.php');" \
     && chmod +x composer.phar \
-    && mv composer.phar /usr/local/bin/composer \
+    && mv composer.phar /usr/local/bin/composer
 
 RUN apk add \
     --no-cache \
