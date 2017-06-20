@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -e
-#set -x
 
 assert_page_contains() {
     local test_url="$1";
@@ -10,7 +9,7 @@ assert_page_contains() {
 
     declare -i timeout=5
 
-    while ! test_output=`curl -s --fail ${test_url}`;
+    while ! test_output=`docker-compose -f env/ci/docker-compose.yml run --rm --entrypoint=curl sculpin -s --fail ${test_url}`;
         do sleep 0.1;
     done
 
@@ -19,8 +18,8 @@ assert_page_contains() {
     fi
 }
 
-assert_page_contains 'http://localhost' 'Lucas van Lierop | freelance software engineer'
-assert_page_contains 'http://localhost/about/' 'About Lucas van Lierop'
-assert_page_contains 'http://localhost/expertise/' 'My expertise'
-assert_page_contains 'http://localhost/public-appearances/' 'Public appearances'
-assert_page_contains 'http://localhost/work/' 'My work'
+assert_page_contains 'http://app' 'Lucas van Lierop | freelance software engineer'
+assert_page_contains 'http://app/about/' 'About Lucas van Lierop'
+assert_page_contains 'http://app/expertise/' 'My expertise'
+assert_page_contains 'http://app/public-appearances/' 'Public appearances'
+assert_page_contains 'http://app/work/' 'My work'

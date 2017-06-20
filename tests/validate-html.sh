@@ -14,7 +14,7 @@ assert_valid_html() {
         docker run \
         --rm \
         --name=html-validator \
-        --network=container:lucasvanlierop-website \
+        --network=container:lucasvanlierop-website-ci \
         magnetikonline/html5validator \
         java -jar /root/build/validator.nu/vnu.jar $url \
         2>&1 1>&3-

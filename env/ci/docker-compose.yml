@@ -2,18 +2,22 @@ version: '2'
 
 services:
   app:
+    container_name: lucasvanlierop-website-ci
     extends:
       file: ../default/docker-compose.yml
       service: app
     build:
       context: ../../
       dockerfile: docker/app/Dockerfile
+
   sass:
+    container_name: lucasvanlierop-website-sass-ci
     extends:
       file: ../default/docker-compose.yml
       service: sass
 
   sculpin:
+    container_name: lucasvanlierop-website-sculpin-ci
     extends:
       file: ../default/docker-compose.yml
       service: sculpin
