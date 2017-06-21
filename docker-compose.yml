@@ -30,3 +30,4 @@ services:
     extends:
       file: env/default/docker-compose.yml
       service: sculpin
+    command: sh -c 'composer install && vendor/bin/sculpin generate --watch'

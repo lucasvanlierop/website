@@ -6,7 +6,10 @@ all: build
 
 export CI_FILE='env/ci/docker-compose.yml'
 
-sculpin:
+install-dependencies:
+    docker-compose -f ${CI_FILE} run --rm sculpin composer install
+
+sculpin: install-dependencies
     docker-compose -f ${CI_FILE} run --rm sculpin vendor/bin/sculpin generate --env=prod
 
 sass:

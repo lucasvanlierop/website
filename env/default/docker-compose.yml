@@ -30,4 +30,3 @@ services:
     volumes:
       - ../../:/app
       - ~/.composer:/home/.composer
-    command: vendor/bin/sculpin generate --watch
