@@ -37,10 +37,6 @@ services:
     command: |
       sh -c '\
         composer install \
-        && pygmentize \
-          -f html \
-          -S colorful \
-          -a .highlight \
-          > /app/source/css/pygments.css \
+        && bin/generate-pygments-css \
         && vendor/bin/sculpin generate --watch \
       '

@@ -10,13 +10,8 @@ install-dependencies:
     docker-compose -f ${CI_FILE} run --rm sculpin composer install
 
 pygments-css:
-    docker-compose -f ${CI_FILE} run --rm sculpin sh -c '\
-        pygmentize \
-            -f html \
-            -S colorful \
-            -a .highlight \
-        > /app/source/css/pygments.css
-    '
+    docker-compose -f ${CI_FILE} run --rm sculpin sh \
+        bin/generate-pygments-css
 
 sculpin: install-dependencies
     docker-compose -f ${CI_FILE} run --rm sculpin vendor/bin/sculpin generate --env=prod
