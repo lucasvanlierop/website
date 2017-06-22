@@ -21,6 +21,7 @@ services:
       - "traefik.frontend.rule=Host:lucasvanlierop.nl.localhost"
       - "traefik.port=80"
       - "traefik.docker.network=traefik_webgateway"
+
   sass:
     extends:
       file: env/default/docker-compose.yml
@@ -30,4 +31,7 @@ services:
     extends:
       file: env/default/docker-compose.yml
       service: sculpin
+    environment:
+      XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_IP}"
+      PHP_IDE_CONFIG: "serverName=lucasvanlierop.nl.localhost"
     command: sh -c 'composer install && vendor/bin/sculpin generate --watch'

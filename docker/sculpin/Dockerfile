@@ -14,7 +14,20 @@ RUN apk update \
     && php composer-setup.php \
     && php -r "unlink('composer-setup.php');" \
     && chmod +x composer.phar \
-    && mv composer.phar /usr/local/bin/composer
+    && mv composer.phar /usr/local/bin/composer \
+
+# Install PHP Xdebug extension
+&& apk add \
+    --no-cache \
+    --virtual .build-dependencies \
+        autoconf \
+        g++ \
+        make \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && apk del .build-dependencies
+
+COPY xdebug.ini ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini
 
 RUN apk add \
     --no-cache \
