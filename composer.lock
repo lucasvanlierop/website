@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dfa1aed1d6dfa025c46e6fb02f78d4c7",
+    "content-hash": "b4790511beb3b826a2e2ff0b587c34f2",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -896,6 +896,37 @@
             "time": "2017-03-22T22:43:35+00:00"
         },
         {
+            "name": "kzykhys/pygments",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kzykhys/Pygments.php.git",
+                "reference": "7bde970d3c378d075ef0e005bb93a91055e17994"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kzykhys/Pygments.php/zipball/7bde970d3c378d075ef0e005bb93a91055e17994",
+                "reference": "7bde970d3c378d075ef0e005bb93a91055e17994",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/process": ">=2.3"
+            },
+            "require-dev": {
+                "symfony/finder": ">=2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "A Thin Wrapper for the Python Pygments",
+            "time": "2013-12-18T15:22:37+00:00"
+        },
+        {
             "name": "michelf/php-markdown",
             "version": "1.7.0",
             "source": {
@@ -1095,6 +1126,113 @@
                 "psr-3"
             ],
             "time": "2016-10-10T12:19:37+00:00"
+        },
+        {
+            "name": "ramsey/sculpin-codeblock",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ramsey/sculpin-codeblock.git",
+                "reference": "bdd2e379e4ae06ab6aace07ff41fd976aa612852"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ramsey/sculpin-codeblock/zipball/bdd2e379e4ae06ab6aace07ff41fd976aa612852",
+                "reference": "bdd2e379e4ae06ab6aace07ff41fd976aa612852",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "ramsey/twig-codeblock": "~1.0",
+                "sculpin/sculpin": "~2.0@dev",
+                "symfony/config": "~2.1",
+                "symfony/dependency-injection": "~2.1",
+                "symfony/http-kernel": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ramsey\\Sculpin\\Bundle\\CodeBlockBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Ramsey",
+                    "email": "ben@benramsey.com",
+                    "homepage": "http://benramsey.com"
+                }
+            ],
+            "description": "A Sculpin bundle for using the ramsey/twig-codeblock extension for defining blocks of code for syntax highlighting (with Pygments) and more.",
+            "homepage": "https://github.com/ramsey/sculpin-codeblock",
+            "keywords": [
+                "bundle",
+                "extension",
+                "highlighting",
+                "pygmentize",
+                "pygments",
+                "sculpin",
+                "syntax",
+                "twig"
+            ],
+            "time": "2015-02-27T23:36:06+00:00"
+        },
+        {
+            "name": "ramsey/twig-codeblock",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ramsey/twig-codeblock.git",
+                "reference": "896f353ad90c835ae8a1514afe389914ecf5ffea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ramsey/twig-codeblock/zipball/896f353ad90c835ae8a1514afe389914ecf5ffea",
+                "reference": "896f353ad90c835ae8a1514afe389914ecf5ffea",
+                "shasum": ""
+            },
+            "require": {
+                "kzykhys/pygments": "^1.0",
+                "php": ">=5.4.0",
+                "symfony/process": "^2.3",
+                "twig/twig": "^1.15"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "^0.9.2",
+                "phpunit/phpunit": "^4.7 || ^5.0",
+                "squizlabs/php_codesniffer": "^2.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ramsey\\Twig\\CodeBlock\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Ramsey",
+                    "email": "ben@benramsey.com",
+                    "homepage": "http://benramsey.com"
+                }
+            ],
+            "description": "A Twig extension for defining blocks of code for syntax highlighting (with Pygments) and more.",
+            "homepage": "https://github.com/ramsey/twig-codeblock",
+            "keywords": [
+                "extension",
+                "highlighting",
+                "pygmentize",
+                "pygments",
+                "syntax",
+                "twig"
+            ],
+            "time": "2017-03-28T06:21:34+00:00"
         },
         {
             "name": "react/event-loop",

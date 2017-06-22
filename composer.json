@@ -12,7 +12,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "sculpin/sculpin": "^2.1@dev"
+        "sculpin/sculpin": "^2.1@dev",
+        "ramsey/sculpin-codeblock": "^1.0"
     },
     "scripts": {
         "post-install-cmd": [
