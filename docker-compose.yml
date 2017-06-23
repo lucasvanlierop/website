@@ -35,7 +35,7 @@ services:
       XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_IP}"
       PHP_IDE_CONFIG: "serverName=lucasvanlierop.nl.localhost"
     command: |
-      sh -c '\
+      sh -c ' \
         composer install \
         && bin/generate-pygments-css \
         && vendor/bin/sculpin generate --watch \
