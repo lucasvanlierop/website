@@ -1,6 +1,12 @@
 ---
 layout: "default"
 name: "Lucas van Lierop, freelance software developer #php #symfony #docker"
+<!--title: Home-->
+generator: pagination
+pagination:
+max_per_page: 3
+use:
+- posts
 ---
 
 <section class="about-me">
@@ -120,3 +126,37 @@ name: "Lucas van Lierop, freelance software developer #php #symfony #docker"
         </li>
     </ul>
 </section>
+
+
+<aside class="blog">
+    <h2>
+        Latest blogposts
+    </h2>
+    
+    {% for post in page.pagination.items %}
+    <article class="block">
+        <h3>
+            <i class="fa palette-salmon"></i>
+            <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+        </h3>
+        <div>
+            {{ post.blocks.content|raw }}
+        </div>
+        {% if post.meta.tags %}
+        <p class="tags">
+            Tags:
+            {% for tag in post.meta.tags %}
+            <a href="{{ site.url }}/blog/tags/{{ tag|url_encode(true) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        {% endif %}
+    </article>
+    {% endfor %}
+    {% if page.pagination.previous_page or page.pagination.next_page %}
+    <nav>
+        {% if page.pagination.previous_page %}<a href="{{ site.url }}{{ page.pagination.previous_page.url }}">Newer Posts</a>{% endif %}<br />
+        {% if page.pagination.next_page %}<a href="{{ site.url }}{{ page.pagination.next_page.url }}">Older Posts</a>{% endif %}<br />
+    </nav>
+    {% endif %}
+
+</aside>
