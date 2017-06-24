@@ -6,5 +6,5 @@ title: Lucas van Lierop Blog
 subtitle: About software development, cars, music and more
 
 # Insert your disqus shortname
-#disqus:
-#    shortname:
+disqus:
+    shortname: lucas-van-lierop
