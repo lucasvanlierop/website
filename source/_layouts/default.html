@@ -28,9 +28,10 @@
         </header>
 
         <main>
-
+        {% block content_wrapper %}
         {% block content %}
         {{ page.content }}
+        {% endblock %}
         {% endblock %}
 
         </main>
