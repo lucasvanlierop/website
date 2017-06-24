@@ -23,7 +23,7 @@ body {
     background-color: white;
 }
 
-header {
+header.top {
     color: #eee;
     padding: 20px;
 
@@ -48,41 +48,43 @@ h1 .payoff {
     display: block;
 }
 
-nav {
-    margin-top: 12px;
-    float: right;
-    ul {
-        margin: 0;
-        padding: 0;
-        display: inline;
-
-        li {
+header.top {
+    nav {
+        margin-top: 12px;
+        float: right;
+        ul {
             margin: 0;
             padding: 0;
-            float: left;
-            list-style: none;
-            padding: 0 10px;
-            text-transform: uppercase;
-            border-right: 1px solid white;
+            display: inline;
 
-            &:last-child {
-                border: none;
+            li {
+                margin: 0;
+                padding: 0;
+                float: left;
+                list-style: none;
+                padding: 0 10px;
+                text-transform: uppercase;
+                border-right: 1px solid white;
+
+                &:last-child {
+                    border: none;
+                }
             }
         }
-    }
 
-    a {
-        color: white;
+        a {
+            color: white;
+        }
     }
 }
 
-main, header, footer {
+main, header.top, footer {
     clear: both;
     border-bottom: solid 1px white;
     padding: 10px 20px;
 }
 
-header:after  {
+header.top:after  {
     visibility: hidden;
     display: block;
     font-size: 0;
@@ -174,7 +176,7 @@ abbr[title] {
 }
 
 @media screen and (min-width: 640px) {
-    main, header, footer {
+    main, header.top, footer {
         padding: 20px 20%;
     }
 }
@@ -189,7 +191,7 @@ abbr[title] {
     h1 .payoff {
         display: none;
     }
-    header {
+    header.top {
         a {
             text-align: center;
             float: none;
