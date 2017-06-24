@@ -226,3 +226,22 @@ figure.code-highlight-figure {
         padding: 10px;
     }
 }
+
+ul.categories {
+    margin: 0;
+    padding: 0;
+    display: inline;
+
+    li {
+        margin: 0;
+        padding: 0;
+        display: inline;
+        list-style: none;
+        padding: 0 10px 0 0;
+        text-transform: uppercase;
+
+        &:last-child {
+            border: none;
+        }
+    }
+}

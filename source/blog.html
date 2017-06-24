@@ -4,8 +4,16 @@ title: Posts Archive
 generator: pagination
 use:
     - posts
+    - posts_categories
 
 ---
+
+<ul class="categories">
+{% for category,posts in data.posts_categories %}
+    <li><a href="{{ site.url }}/blog/categories/{{ category|url_encode(true) }}">{{ category }}</a><li>
+{% endfor %}
+</ul>
+
 {% set year = '0' %}
 <h2>Posts Archive</h2>
 {% for post in page.pagination.items %}
