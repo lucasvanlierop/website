@@ -22,6 +22,7 @@ if (file_exists($file)) {
 }
 
 $data = "---
+draft: true
 layout: default
 title: {$title}
 categories:
