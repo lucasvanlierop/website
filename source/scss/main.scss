@@ -218,3 +218,11 @@ abbr[title] {
         content: ")"
     }
 }
+
+figure.code-highlight-figure {
+    margin: 0;
+
+    .highlight {
+        padding: 10px;
+    }
+}
