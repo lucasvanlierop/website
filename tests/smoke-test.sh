@@ -18,7 +18,7 @@ assert_page_contains() {
     fi
 }
 
-assert_page_contains 'http://app' 'Lucas van Lierop | freelance software engineer'
+assert_page_contains 'http://app' 'Lucas van Lierop | freelance software developer'
 assert_page_contains 'http://app/about/' 'About Lucas van Lierop'
 assert_page_contains 'http://app/expertise/' 'My expertise'
 assert_page_contains 'http://app/public-appearances/' 'Public appearances'
