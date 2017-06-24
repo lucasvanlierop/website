@@ -14,6 +14,7 @@ pygments-css:
         bin/generate-pygments-css
 
 sculpin: install-dependencies
+    docker-compose -f ${CI_FILE} run --rm sculpin rm -rf output_prod/*
     docker-compose -f ${CI_FILE} run --rm sculpin vendor/bin/sculpin generate --env=prod
 
 sass:
