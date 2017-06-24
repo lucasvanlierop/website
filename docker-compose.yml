@@ -38,5 +38,6 @@ services:
       sh -c ' \
         composer install \
         && bin/generate-pygments-css \
+        && rm -rf output_dev/* \
         && vendor/bin/sculpin generate --watch \
       '
