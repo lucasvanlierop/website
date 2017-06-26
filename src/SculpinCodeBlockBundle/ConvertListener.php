@@ -66,7 +66,7 @@ class ConvertListener implements EventSubscriberInterface
             $this->replaceHtmlCodeBlockWithTwigCodeBlock($codeBlock, $document);
         }
 
-        $a =  preg_replace(
+        return preg_replace(
             [
                 '#<body>#',
                 '#</body>#'
@@ -74,8 +74,6 @@ class ConvertListener implements EventSubscriberInterface
             '',
             $document->saveHTML($document->getElementsByTagName('body')[0])
         );
-
-        return $a;
     }
 
     private function isMarkdownEvent(ConvertEvent $convertEvent): bool
