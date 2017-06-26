@@ -34,16 +34,17 @@ header.top {
     }
 }
 
-h1, h2, h3 {
+span.top-title h1, h2, h3 {
     letter-spacing: .6px;
     font-weight: 300;
 }
 
-h1 {
+span.top-title  {
     margin: 0;
+    font-size: 200%;
 }
 
-h1 .payoff {
+span.top-title  .payoff {
     font-size: 50%;
     display: block;
 }
@@ -188,7 +189,7 @@ abbr[title] {
     .block {
         margin-top: 20px;
     }
-    h1 .payoff {
+    span.top-title .payoff {
         display: none;
     }
     header.top {
