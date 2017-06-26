@@ -7,6 +7,7 @@ all: build
 export CI_FILE='env/ci/docker-compose.yml'
 
 install-dependencies:
+    mkdir -p ~/.composer
     docker-compose -f ${CI_FILE} run --rm sculpin composer install
 
 pygments-css:
