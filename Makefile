@@ -13,6 +13,9 @@ pygments-css:
     docker-compose -f ${CI_FILE} run --rm sculpin sh \
         bin/generate-pygments-css
 
+docker-tool-images:
+    docker-compose -f ${CI_FILE} build sass sculpin
+
 sculpin: install-dependencies
     docker-compose -f ${CI_FILE} run --rm sculpin rm -rf output_prod/*
     docker-compose -f ${CI_FILE} run --rm sculpin vendor/bin/sculpin generate --env=prod
@@ -20,7 +23,7 @@ sculpin: install-dependencies
 sass:
     docker-compose -f ${CI_FILE} run --rm sass --update /app/source/scss:/app/source/css
 
-build: sass sculpin
+build: docker-tool-images sass sculpin
     docker-compose -f ${CI_FILE} up -d --build --force-recreate --remove-orphans
 
 start:
