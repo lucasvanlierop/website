@@ -1,4 +1,5 @@
-/source/css
+/source/css/*
+!/source/css/.gitkeep
 /.sculpin/
 /app/cache/*
 /app/config/sculpin_kernel_*.yml
