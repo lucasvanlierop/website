@@ -1,5 +1,4 @@
 ---
-draft: true
 title: "Accessing your Docker app via a domain name using Træfɪk"
 categories: 
     - software-development
