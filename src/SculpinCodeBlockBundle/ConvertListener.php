@@ -3,7 +3,6 @@ namespace App\SculpinCodeBlockBundle;
 
 use DOMDocument;
 use DOMElement;
-use DOMNode;
 use DOMXPath;
 use Sculpin\Bundle\MarkdownBundle\SculpinMarkdownBundle;
 use Sculpin\Bundle\TwigBundle\SculpinTwigBundle;
