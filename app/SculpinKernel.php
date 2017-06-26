@@ -1,5 +1,5 @@
 <?php
-use Ramsey\Sculpin\Bundle\CodeBlockBundle\RamseySculpinCodeBlockBundle;
+use App\SculpinCodeBlockBundle\SculpinCodeBlockBundle;
 use Sculpin\Bundle\SculpinBundle\HttpKernel\AbstractKernel;
 
 class SculpinKernel extends AbstractKernel
@@ -7,7 +7,7 @@ class SculpinKernel extends AbstractKernel
     protected function getAdditionalSculpinBundles()
     {
         return [
-            RamseySculpinCodeBlockBundle::class
+            SculpinCodeBlockBundle::class
         ];
     }
 }

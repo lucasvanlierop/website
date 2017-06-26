@@ -13,7 +13,7 @@
     "prefer-stable": true,
     "require": {
         "sculpin/sculpin": "^2.1@dev",
-        "ramsey/sculpin-codeblock": "^1.0"
+        "ramsey/twig-codeblock": "~1.0"
     },
     "scripts": {
         "post-install-cmd": [
@@ -21,6 +21,9 @@
         ]
     },
     "autoload": {
-        "classmap": ["component-manager.php"]
+        "classmap": ["component-manager.php"],
+        "psr-4": {
+            "App\\": "src"
+        }
     }
 }
