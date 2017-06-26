@@ -27,7 +27,7 @@ sculpin:
 sass:
     docker-compose -f ${CI_FILE} run --rm sass --update /app/source/scss:/app/source/css
 
-build: docker-tool-images install-dependencies clean sass sculpin
+build: docker-tool-images install-dependencies clean pygments-css sass sculpin
     docker-compose -f ${CI_FILE} build app
     docker-compose -f ${CI_FILE} up -d --force-recreate --remove-orphans
 
