@@ -13,7 +13,7 @@ _This article is part of a [series of blog posts](/blog/tags/docker-festival/)  
 [Matthias Noback](https://twitter.com/matthiasnoback) and I will be doing at
 [Dutch PHP Conference 2017](https://www.phpconference.nl/)_
 
-## Running a (read just one) web application in Docker is easy.
+## Running a (read: just one) web application in Docker is easy.
 
 So you're developing or running web applications in Docker but how do you expose them to the outside world?
 
