@@ -25,7 +25,8 @@ sass:
     docker-compose -f ${CI_FILE} run --rm sass --update /app/source/scss:/app/source/css
 
 build: docker-tool-images sass sculpin
-    docker-compose -f ${CI_FILE} up -d --build --force-recreate --remove-orphans
+    docker-compose -f ${CI_FILE} build app
+    docker-compose -f ${CI_FILE} up -d --force-recreate --remove-orphans
 
 start:
     docker-compose up
