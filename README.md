@@ -2,7 +2,7 @@
 
 #Website about my freelance developer activities.
 
-This site uses [Sass](http://sass-lang.com/) for css and [Spress](http://spress.yosymfony.com/) for static site generation 
+This site uses [Sass](http://sass-lang.com/) for css and [Sculpin](https://sculpin.io/) for static site generation 
 and runs in [Docker](docker.io). Images are pushed to [Docker Hub](https://hub.docker.com/r/lucasvanlierop/website/)
 
 To develop:
