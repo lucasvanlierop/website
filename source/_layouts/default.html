@@ -7,27 +7,34 @@
         <title>
             {{ page.name }}
         </title>
-        <meta name="description" content="Lucas van Lierop is a freelance software engineer who is specialized in creating, refactoring or containerizing (web) applications" />
+        <meta name="description" content="Lucas van Lierop is a freelance software developer who is specialized in creating, refactoring or containerizing (web) applications" />
         <link rel="shortcut icon" href="favicon.ico">
         <link rel="stylesheet" href="css/normalize.css"/>
         <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/pygments.css"/>
         <script src="https://use.fontawesome.com/eb213707b3.js"></script>
     </head>
     <body>
-        <header class="palette-bg-petrol">
-            <a href="/"><h1>Lucas van Lierop<span class="payoff">freelance software engineer</span></h1></a>
+        <header class="top palette-bg-petrol">
+            <a href="/"><span class="top-title">Lucas van Lierop<span class="payoff">freelance software developer</span></span></a>
             <nav>
                 <ul>{% spaceless %}
                     <li><a href="/about/">About</a></li>
                     <li><a href="/work/">Work</a></li>
                     <li><a href="/expertise/">Expertise</a></li>
-                {% endspaceless %}</ul>
+                    <li><a href="/blog/">Blog</a></li>
+                    {% endspaceless %}</ul>
             </nav>
         </header>
 
+        <main>
+        {% block content_wrapper %}
         {% block content %}
         {{ page.content }}
         {% endblock %}
+        {% endblock %}
+
+        </main>
 
         <footer>
             <p>

@@ -1,0 +1,10 @@
+# The contents of this file are parsed and made available as
+# via `site.*`. So for example, {{ site.title }} can be used
+# in a template to get the contents of the `title` key.
+# Note these values are not used yet!
+title: Lucas van Lierop Blog
+subtitle: About software development, cars, music and more
+
+# Insert your disqus shortname
+disqus:
+    shortname: lucas-van-lierop

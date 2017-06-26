@@ -1,6 +1,12 @@
 ---
 layout: "default"
-name: "Lucas van Lierop, freelance software engineer #php #symfony #docker"
+name: "Lucas van Lierop, freelance software developer #php #symfony #docker"
+<!--title: Home-->
+generator: pagination
+pagination:
+max_per_page: 3
+use:
+- posts
 ---
 
 <section class="about-me">
@@ -8,10 +14,10 @@ name: "Lucas van Lierop, freelance software engineer #php #symfony #docker"
 
     <h2>About me</h2>
 
-    <img class="photo" src="img/me_300px.jpeg" alt="this is me"/>
+    <img class="photo" src="images/me_300px.jpeg" alt="this is me"/>
 
     <p>
-        I'm a <a href="about/">freelance software engineer</a> based in Utrecht, the Netherlands. I'm specialized in creating, refactoring or containerizing
+        I'm a <a href="about/">freelance software developer</a> based in Utrecht, the Netherlands. I'm specialized in creating, refactoring and containerizing
         (web) applications.
     </p>
 
@@ -40,7 +46,7 @@ name: "Lucas van Lierop, freelance software engineer #php #symfony #docker"
 
 <section class="services">
     <a id="services"></a>
-    <h2>
+    <h2 class="palette-petrol">
         What I can do for you
     </h2>
     <ul class="block-list">
@@ -120,3 +126,34 @@ name: "Lucas van Lierop, freelance software engineer #php #symfony #docker"
         </li>
     </ul>
 </section>
+
+
+<aside class="blog">
+    <h2>
+        Latest blogposts
+    </h2>
+    
+    {% for post in page.pagination.items %}
+    <article class="block">
+        <h3>
+            <i class="fa fa-pencil-square palette-petrol"></i>
+            <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+        </h3>
+        {% if post.meta.tags %}
+        <p class="tags">
+            Tags:
+            {% for tag in post.meta.tags %}
+            <a href="{{ site.url }}/blog/tags/{{ tag|url_encode(true) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        {% endif %}
+    </article>
+    {% endfor %}
+    {% if page.pagination.previous_page or page.pagination.next_page %}
+    <nav>
+        {% if page.pagination.previous_page %}<a href="{{ site.url }}{{ page.pagination.previous_page.url }}">Newer Posts</a>{% endif %}<br />
+        {% if page.pagination.next_page %}<a href="{{ site.url }}{{ page.pagination.next_page.url }}">Older Posts</a>{% endif %}<br />
+    </nav>
+    {% endif %}
+
+</aside>

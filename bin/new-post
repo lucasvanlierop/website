@@ -1,0 +1,1 @@
+docker-compose run --rm sculpin php bin/new-post.php "$@"

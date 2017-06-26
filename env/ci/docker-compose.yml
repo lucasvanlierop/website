@@ -16,8 +16,8 @@ services:
       file: ../default/docker-compose.yml
       service: sass
 
-  spress:
-    container_name: lucasvanlierop-website-spress-ci
+  sculpin:
+    container_name: lucasvanlierop-website-sculpin-ci
     extends:
       file: ../default/docker-compose.yml
-      service: spress
+      service: sculpin

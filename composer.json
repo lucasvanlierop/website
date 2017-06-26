@@ -1,0 +1,29 @@
+{
+    "name": "lucasvanlierop/website",
+    "description": "Website about my freelance work + my blog",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lucas van Lierop",
+            "email": "me@lucasvanlierop.nl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "sculpin/sculpin": "^2.1@dev",
+        "ramsey/twig-codeblock": "~1.0"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "ComponentManager\\ComponentManager::postComposerInstall"
+        ]
+    },
+    "autoload": {
+        "classmap": ["component-manager.php"],
+        "psr-4": {
+            "App\\": "src"
+        }
+    }
+}

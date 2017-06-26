@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+pygmentize \
+  -f html \
+  -S monokai \
+  -a .highlight \
+  > /app/source/css/pygments.css

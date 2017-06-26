@@ -10,7 +10,7 @@ html, body {
     width: 100% !important;
     margin: 0;
     padding: 0;
-    color: #222;
+    color: #2C3E50;
 }
 
 a {
@@ -23,7 +23,7 @@ body {
     background-color: white;
 }
 
-header {
+header.top {
     color: #eee;
     padding: 20px;
 
@@ -34,55 +34,58 @@ header {
     }
 }
 
-h1, h2, h3 {
+span.top-title h1, h2, h3 {
     letter-spacing: .6px;
     font-weight: 300;
 }
 
-h1 {
+span.top-title  {
     margin: 0;
+    font-size: 200%;
 }
 
-h1 .payoff {
+span.top-title  .payoff {
     font-size: 50%;
     display: block;
 }
 
-nav {
-    margin-top: 12px;
-    float: right;
-    ul {
-        margin: 0;
-        padding: 0;
-        display: inline;
-
-        li {
+header.top {
+    nav {
+        margin-top: 12px;
+        float: right;
+        ul {
             margin: 0;
             padding: 0;
-            float: left;
-            list-style: none;
-            padding: 0 10px;
-            text-transform: uppercase;
-            border-right: 1px solid white;
+            display: inline;
 
-            &:last-child {
-                border: none;
+            li {
+                margin: 0;
+                padding: 0;
+                float: left;
+                list-style: none;
+                padding: 0 10px;
+                text-transform: uppercase;
+                border-right: 1px solid white;
+
+                &:last-child {
+                    border: none;
+                }
             }
         }
-    }
 
-    a {
-        color: white;
+        a {
+            color: white;
+        }
     }
 }
 
-section, header, footer {
+main, header.top, footer {
     clear: both;
     border-bottom: solid 1px white;
     padding: 10px 20px;
 }
 
-header:after  {
+header.top:after  {
     visibility: hidden;
     display: block;
     font-size: 0;
@@ -174,7 +177,7 @@ abbr[title] {
 }
 
 @media screen and (min-width: 640px) {
-    section, header, footer {
+    main, header.top, footer {
         padding: 20px 20%;
     }
 }
@@ -186,10 +189,10 @@ abbr[title] {
     .block {
         margin-top: 20px;
     }
-    h1 .payoff {
+    span.top-title .payoff {
         display: none;
     }
-    header {
+    header.top {
         a {
             text-align: center;
             float: none;
@@ -217,4 +220,42 @@ abbr[title] {
     abbr[title]:after {
         content: ")"
     }
+}
+
+figure.code-highlight-figure {
+    margin: 0;
+
+    .highlight {
+        padding: 10px;
+    }
+}
+
+ul.categories {
+    margin: 0;
+    padding: 0;
+    display: inline;
+
+    li {
+        margin: 0;
+        padding: 0;
+        display: inline;
+        list-style: none;
+        padding: 0 10px 0 0;
+        text-transform: uppercase;
+
+        &:last-child {
+            border: none;
+        }
+    }
+}
+
+article {
+    img {
+        max-width: 100%;
+    }
+}
+
+code {
+    background-color: #f6f8fa;
+    border: solid 1px darkgray;
 }

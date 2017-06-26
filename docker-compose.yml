@@ -11,7 +11,7 @@ services:
       file: env/default/docker-compose.yml
       service: app
     volumes:
-      - ./build:/usr/share/nginx/html
+      - ./output_dev:/usr/share/nginx/html
     networks:
       default:
       traefik:
@@ -21,12 +21,23 @@ services:
       - "traefik.frontend.rule=Host:lucasvanlierop.nl.localhost"
       - "traefik.port=80"
       - "traefik.docker.network=traefik_webgateway"
+
   sass:
     extends:
       file: env/default/docker-compose.yml
       service: sass
 
-  spress:
+  sculpin:
     extends:
       file: env/default/docker-compose.yml
-      service: spress
+      service: sculpin
+    environment:
+      XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_IP}"
+      PHP_IDE_CONFIG: "serverName=lucasvanlierop.nl.localhost"
+    command: |
+      sh -c ' \
+        composer install \
+        && bin/generate-pygments-css \
+        && rm -rf output_dev/* \
+        && vendor/bin/sculpin generate --watch \
+      '
