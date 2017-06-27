@@ -23,8 +23,7 @@ docker-tool-images:
 
 sculpin:
     docker-compose -f ${CI_FILE} run --rm sculpin vendor/bin/sculpin generate \
-        --env=prod \
-        --url=http://lucasvanlierop.nl
+        --env=prod
 
 sass:
     docker-compose -f ${CI_FILE} run --rm sass --update /app/source/scss:/app/source/css
