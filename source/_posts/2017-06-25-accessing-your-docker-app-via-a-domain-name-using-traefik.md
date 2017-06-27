@@ -31,7 +31,7 @@ That would work for development or even for production if you have just one web 
 - You want run multiple web services?
 - You want to run multiple instances of a service?
 - You want to run services on multiple hosts?
-- You just want more descriptive hostname than 'http://localhost'?
+- You just want a more descriptive hostname than 'http://localhost'?
 
 ## Reverse proxy to the rescue!
 
@@ -42,9 +42,9 @@ So you might have heard or even use [Nginx](https://nginx.org/) or [HAProxy](htt
 
 However since we're dealing with containers now there is one big difference: 
 In comparison to 'classic' servers/virtual machines containers tend to be very volatile. 
-Each time a service is deployed or scaled new container come and old ones go.
+Each time a service is deployed or scaled new containers come and old ones go.
 The proxy needs to be able to keep track of all these changes which means it's not possible to rely on manual configuration.
-Instead something automated reconfiguration is required. 
+Instead some automated reconfiguration is required. 
 
 ## Enter Træfɪk
 
@@ -64,7 +64,7 @@ And yes there are other products too but this is so simple yet so powerful.
 
 ## How does Træfɪk work?
 
-So I said Træfɪk configures itself automatically?, well almost. 
+So I said Træfɪk configures itself automatically?, Well almost. 
 You have to add some configuration to your application to help Træfɪk understand how it should proxy requests to it.
 To be able to do this you'll need to understand the basics of how Træfɪk works.
 Træfɪk works with the concepts frontend and backend and makes sure traffic from a given frontend (accessible from the web) goes to a given backend (running on the orchestrator).
@@ -77,14 +77,14 @@ _^Image is courtesy of traefik.io_
 Træfɪk can be configured via labels, these labels can be set either as part of the container image or by an orchestration tool.
 I prefer the latter since I like decoupling in general because it allows different settings for different environments.
 
-At least Træfɪk needs to know the following things of your web application:
+At minimum Træfɪk needs to know the following things of your web application:
 
 - To which backend it belongs
 - On which domain it should be reachable from outside
 - On which port it is running
 - Via which network it can be reached
 
-Furthermore I choose to explicitely enable services for Træfɪk.
+Furthermore I choose to explicitly enable services for Træfɪk.
 This way Træfɪk is not bothered by containers I don't want to expose like backend applications and databases. 
 Also this keeps the UI a lot cleaner.
 
@@ -156,7 +156,7 @@ LABEL "traefik.enable=true" \
 While Træfɪk itself is a Go binary you - off course - run it as a Docker container. 
 There's even an [example Docker Compose configuration](https://docs.traefik.io/#docker).
 
-Note that I prefer to explicitely enable services to be proxies by Træfɪk rather than having it autodetect all containers.
+Note that I prefer to explicitly enable services to be proxies by Træfɪk rather than having it autodetect all containers.
 This can be achieved by running it with `--docker.exposedbydefault=false`.
 
 For all other options: Træfɪk has pretty good [documentation](https://docs.traefik.io/)
