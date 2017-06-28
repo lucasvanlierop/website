@@ -94,8 +94,7 @@ class ConvertListener implements EventSubscriberInterface
 
         $preNode = $codeBlock->parentNode;
 
-        $newNode = $document->createElement(
-            'div',
+        $newNode = $document->createCDATASection(
             <<<"CODE"
 {% codeblock lang:$language %}
 $codeBlock->nodeValue
