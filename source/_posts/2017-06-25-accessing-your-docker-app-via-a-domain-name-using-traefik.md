@@ -8,7 +8,7 @@ tags:
     - traefik
 ---
 
-_This article is part of a [series of blog posts](/blog/tags/docker-festival/)  in preparation to the 
+_This article is part of a [series of blog posts](/blog/tags/docker-festival/) related to the 
 [Docker Festival](https://twitter.com/hashtag/dockerfestival?src=hash) workshop
 [Matthias Noback](https://twitter.com/matthiasnoback) and I will be doing at
 [Dutch PHP Conference 2017](https://www.phpconference.nl/)_
