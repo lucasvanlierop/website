@@ -72,7 +72,7 @@ In case access to private repositories is required make sure an access token is 
 
 For GitHub this can be done like:
 ```bash
-composer composer config -g github-oauth.github.com <oauthtoken>
+composer config -g github-oauth.github.com <oauthtoken>
 ```
 
 See also the [Composer docs on this](https://getcomposer.org/doc/articles/troubleshooting.md#api-rate-limit-and-oauth-tokens)
