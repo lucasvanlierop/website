@@ -1,3 +1,4 @@
+.built
 /source/css/*
 !/source/css/.gitkeep
 /.sculpin/
