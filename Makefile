@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 
-all: build
+all: docker/app/.built
 
 export COMPOSE_PROJECT_NAME=lucasvanlierop-website
 export CI_FILE='env/ci/docker-compose.yml'
@@ -20,15 +20,14 @@ clean:
 	rm -rfv source/css/*
 	rm -rfv output_prod/*
 
-.DELETE_ON_ERROR: \
-	docker/sculpin/.built \
-	app/source/css/pygments.css
-app/source/css/pygments.css:
+.DELETE_ON_ERROR: source/css/pygments.css
+source/css/pygments.css: docker/sculpin/.built
 	docker-compose -f ${CI_FILE} run --rm sculpin sh \
 		bin/generate-pygments-css
 
 .DELETE_ON_ERROR: docker/sass/.built
-docker/sass/.built: docker/sass/*
+docker/sass/.built: \
+	$(shell find docker/sass/* | grep .built)
 	docker-compose -f ${CI_FILE} build sass
 	touch $@
 
@@ -40,31 +39,34 @@ docker/sculpin/.built: docker/sculpin/*
 # todo fix source/*
 .DELETE_ON_ERROR: output_prod
 output_prod: \
-	source/*  \
-	docker/sculpin/.built
+	$(shell find source/) \
+	source/css \
+    docker/sculpin/.built
 	docker-compose -f ${CI_FILE} run --rm sculpin vendor/bin/sculpin generate \
 		--env=prod
 
-.DELETE_ON_ERROR: app/source/css
-app/source/css: docker/sass/.built
+.DELETE_ON_ERROR: source/css
+source/css: \
+	docker/sass/.built \
+	source/css/pygments.css \
+	$(shell find source/scss/ | grep .built)
 	docker-compose -f ${CI_FILE} run --rm sass --update /app/source/scss:/app/source/css
+	touch $@
 
-.PHONY: build
-build: \
-	docker/sculpin/.built \
-	vendor \
-	clean \
-	app/source/css/pygments.css \
-	app/source/css output_prod
+.DELETE_ON_ERROR: docker/app/.built
+docker/app/.built: \
+	docker/app/* \
+	output_prod
 	docker-compose -f ${CI_FILE} build app
-	docker-compose -f ${CI_FILE} up -d --no-build --force-recreate --remove-orphans
+	touch $@
 
 .PHONY: start
 start:
 	docker-compose up
 
 .PHONY: test
-test: build
+test: docker/app/.built
+	docker-compose -f ${CI_FILE} up -d --no-build --force-recreate --remove-orphans
 	tests/smoke-test.sh
 	tests/validate-html.sh
 	docker-compose -f ${CI_FILE} stop
