@@ -2,6 +2,7 @@ SHELL=/bin/bash
 
 all: build
 
+export COMPOSE_PROJECT_NAME=lucasvanlierop-website
 export CI_FILE='env/ci/docker-compose.yml'
 
 ~/.composer:
