@@ -9,7 +9,7 @@ assert_page_contains() {
 
     declare -i timeout=5
 
-    while ! test_output=`docker-compose -f env/ci/docker-compose.yml run --rm --entrypoint=curl sculpin -s --fail ${test_url}`;
+    while ! test_output=`docker-compose -f env/ci/docker-compose.yml run --rm --entrypoint=curl sculpin --silent --fail ${test_url}`;
         do sleep 0.1;
     done
 
