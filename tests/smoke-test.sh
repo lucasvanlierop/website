@@ -13,7 +13,7 @@ assert_page_contains() {
         do sleep 0.1;
     done
 
-    if grep -q '$expected_content' <<<$test_output; then
+    if [[ -z $(echo "${test_output}" | grep "${expected_content}") ]]; then
         echo "Failed asserting that '${test_output}' contains '$expected_content'" && exit 1;
     fi
 }
