@@ -41,7 +41,8 @@ docker/sculpin/.built: docker/sculpin/*
 output_prod: \
 	$(shell find source/) \
 	source/css \
-    docker/sculpin/.built
+    docker/sculpin/.built \
+    vendor
 	docker-compose -f ${CI_FILE} run --rm sculpin vendor/bin/sculpin generate \
 		--env=prod
 
