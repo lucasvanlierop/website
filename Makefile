@@ -56,7 +56,7 @@ source/css: \
 .DELETE_ON_ERROR: docker/app/.built
 docker/app/.built: \
 	docker/app/* \
-	$(shell find output_prod/*)
+	output_prod
 	docker-compose -f ${CI_FILE} build app
 	touch $@
 
