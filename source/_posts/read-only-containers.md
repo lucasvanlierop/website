@@ -12,28 +12,49 @@ tags:
     - security
 ---
 
+Target audience: developers who (are planning to) run containers in production.
+
 TL;DR Run your containers with an immutable file system, its more secure and predictable!
 
 ---
+<span class="header-image">![Just a random picture of a locked door](/images/blog/software/locked-door.jpg)</span>
+## What are the advantages of a container with an immutable file system? 
 
-## Why should a container have an immutable file system? 
+Because of predictability! When any kind of change is applied to a running system there's always a chance that besides fixing a bug or adding a feature something else unexpectedly breaks.
 
-When any kind of change is applied to a running system there's always a chance that beside fixing a bug or adding a feature something else unexpectedly breaks. 
-Over the years development and deployment strategies of (web) applications have evolved a lot to prevent this from happening. 
-Each evolution made the process a bit more more predictable and secure.
+But let's look ad some disadvantages of various deployment strategies first:
 
-In the old days files were directly edited on a webserver or synced from a development machine using SFTP, RSYNC etc. 
-There was no real separation between development and deployment at all.
+Over the years development and deployment strategies of (web) applications have evolved a lot. 
+Each evolution made the process a bit more more predictable and secure but still had some disadvantages.
+
+
+In the old days developers used to edit files directly on servers or synced them from a development machine using SFTP, Rsync etc. 
+There was no real separation between development and deployment at all. 
+There were no guarantees on:
+
+- <i class="fa fa-times" style="color: red"></i> which code was deployed
+- <i class="fa fa-times" style="color: red"></i> deployed code has been verified to work as expected
+- <i class="fa fa-times" style="color: red"></i> deployed code is fully compatible with the stack it runs on.
+- <i class="fa fa-times" style="color: red"></i> deployed code is has not been tampered with
 
 After a while version control systems were used and code was deployed by checking out the latest version on a server.
- 
+This at least provided guarantees on:
+
+- <i class="fa fa-check-square" style="color: green"></i> which code was deployed
+
 Then fully automatic pipelines that could build and test applications before deploying them became more common.
+This provides guarantees on:
+ 
+- <i class="fa fa-check-square" style="color: green"></i> which code was deployed
+- <i class="fa fa-check-square" style="color: green"></i> deployed code has been verified to work as expected
  
 Now with the arrival of container technologies it's possible to go one step further and package the application, 
 its runtime and all of its dependencies into one deployable artifact a.k.a. a container image.
-This allows testing the entire stack in a build pipeline and gives us the following guarantees on:
-- the fact that the application AND the stack it runs on work
-- what code EXACTLY will be deployed
+This allows testing the entire stack in a build pipeline and gives us many guarantees (but not all)
+
+- <i class="fa fa-check-square" style="color: green"></i> which code was deployed
+- <i class="fa fa-check-square" style="color: green"></i> deployed code has been verified to work as expected
+- <i class="fa fa-check-square" style="color: green"></i> deployed code is fully compatible with the stack it runs on.
 
 While this is great there's still one issue. What if something in the container changes after it has been deployed?
 Changes to a running container can happen either by accident or as part of a hacking attempt. 
@@ -41,6 +62,11 @@ Whatever the cause if something is changed, the guarantees we had earlier are lo
 
 The good news is that this can be prevented fairly easy by just starting the container with an immutable (read only) file system. 
 In practice this means your application, its configuration and basically everything else that's in the container can NOT be changed.
+
+- <i class="fa fa-check-square" style="color: green"></i> which code was deployed
+- <i class="fa fa-check-square" style="color: green"></i> deployed code has been verified to work as expected
+- <i class="fa fa-check-square" style="color: green"></i> deployed code is fully compatible with the stack it runs on.
+- <i class="fa fa-check-square" style="color: green"></i> deployed code has not been tampered with
 
 Since many containerized projects do not make use of immutable containers yet I'd like to share some examples on how this can be configured in some of the common orchestration tools. 
 
@@ -155,7 +181,8 @@ to prevent unplanned automatic updates from happening. For some more context che
 ---
 
 *Thanks 
-[@n0x13](https://twitter.com/n0x13) and 
-[@allihoppa](https://twitter.com/alli_hoppa)
+[Jeroen](https://twitter.com/n0x13),
+[Annelies](https://twitter.com/alli_hoppa) and
+[Caroline](https://twitter.com/erzitkaktussen)
 for reviewing this post*
 
