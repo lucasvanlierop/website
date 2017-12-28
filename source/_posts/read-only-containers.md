@@ -19,27 +19,28 @@ TL;DR Run your containers with an immutable file system, its more secure and pre
 ## Why should a container have an immutable file system? 
 
 When any kind of change is applied to a running system there's always a chance that beside fixing a bug or adding a feature something else unexpectedly breaks. 
-Over the years development and deployment strategies (web) applications have evolved a lot to prevent this from happening. 
+Over the years development and deployment strategies of (web) applications have evolved a lot to prevent this from happening. 
 Each evolution made the process a bit more more predictable and secure.
 
 In the old days files were directly edited on a webserver or synced from a development machine using SFTP, RSYNC etc. 
-This way there was no real separation between development and deployment at all.
+There was no real separation between development and deployment at all.
 
-After a while version control systems were used and code deployed by checking out the latest version on a server.
+After a while version control systems were used and code was deployed by checking out the latest version on a server.
  
 Then fully automatic pipelines that could build and test applications before deploying them became more common.
  
 Now with the arrival of container technologies it's possible to go one step further and package the application, 
-it's runtime and all of it's dependencies into one deployable artifact a.k.a. a container image.
+its runtime and all of its dependencies into one deployable artifact a.k.a. a container image.
 This allows testing the entire stack in a build pipeline and gives us the following guarantees on:
-- The fact that application AND the stack it runs on work
-- What code EXACTLY will be deployed
+- the fact that the application AND the stack it runs on work
+- what code EXACTLY will be deployed
 
 While this is great there's still one issue. What if something in the container changes after it has been deployed?
-Changes to a running container can happen either by accident or as part of a hacking attempt but whatever the cause. If that happens the guarantees we had earlier are lost. 
+Changes to a running container can happen either by accident or as part of a hacking attempt. 
+Whatever the cause if something is changed, the guarantees we had earlier are lost. 
 
 The good news is that this can be prevented fairly easy by just starting the container with an immutable (read only) file system. 
-In practice this means your application, it's configuration and basically everything else that's in the container can NOT be changed.
+In practice this means your application, its configuration and basically everything else that's in the container can NOT be changed.
 
 Since many containerized projects do not make use of immutable containers yet I'd like to share some examples on how this can be configured in some of the common orchestration tools. 
 
@@ -48,7 +49,7 @@ Since many containerized projects do not make use of immutable containers yet I'
 With Docker all you have to do is mark the service as 'read only'.
 
 *Note that this example is for version 3 of the Docker Compose file format which can also be used for deploying to Docker Swarm. 
-For the 'classic' Docker Compose version 2 format check the example below*
+For the 'classic' Docker Compose version 2 format check the example below.*
 
 
 ```yaml
@@ -62,8 +63,9 @@ services:
 
 The example above assumes the application does not require any changes to the file system. 
 In practice that might not always be possible because some processes require some files or directories to be writable.
-For example a temporary directory for storing file uploads might be necessary for example. Of course the final uploaded files should be stored in a persistent volume. 
-Another example might be processes like Apache HTTP server that to store it's process id in a [`pid` file](https://linux.die.net/man/3/pidfile).
+For example a temporary directory for storing file uploads might be necessary. 
+Of course the final uploaded files should be stored in a persistent volume. 
+Another example might be processes like Apache HTTP server that want to store their process id in a [`pid` file](https://linux.die.net/man/3/pidfile).
 
 This could be solved by mounting a writable file or directory from the local file system into the container. 
 However since there's no need to persist these files they can be written to memory instead of disk.
@@ -108,7 +110,7 @@ app:
 ## Example #3 Configuring immutable file systems in Kubernetes (v1.7+)
 
 In Kubernetes an immutable file system can be configured as part of a deployment security context. 
-Instead of Docker's tmpfs a volume of the type `emptyDir` must be configured.`
+Instead of Docker's tmpfs a volume of the type `emptyDir` must be configured.
 
 ```yaml
 apiVersion: apps/v1beta1
@@ -141,12 +143,19 @@ Not necessarily since it's a mainly security measure for production situations.
 However it's better to have a similar setup across all environments so possible issues can be spotted before going to production. 
 
 - *Do all containers need to have an immutable file system?*
-In general I would recommend to at least do it for any container where scripts/applications can be executed so web and application servers and maybe even database servers.
+In general I would recommend to at least make containers where scripts/applications should be immutable. So web and application servers and maybe even database servers.
 And yes: unexpected code execution should not be possible at all, query parameters should be escaped etc. 
 but as with all security measures it's [Defense in depth](https://en.wikipedia.org/wiki/Defense_in_depth_(computing)) that makes a system more secure.
 
 *FYI: The examples above are taken from a legacy WordPress project. Since I'm not a WordPress expert at all I intentionally run it in an immutable container to reduce the attack vector and 
-to prevent unplanned automatic updates from happening. For some more context check the full Docker Compose config at the time of writing for both
-- [development](https://github.com/allihoppa/allihoppa.nl/blob/4e061496f8d489a00c0d1cf32725d90e376eb426/environment/dev/docker-compose.yml#L28) and
-- [production](https://github.com/allihoppa/allihoppa.nl/blob/4e061496f8d489a00c0d1cf32725d90e376eb426/environment/prod/docker-compose.yml#L43)*
+to prevent unplanned automatic updates from happening. For some more context check the full Docker Compose config at the time of writing for both 
+[development](https://github.com/allihoppa/allihoppa.nl/blob/4e061496f8d489a00c0d1cf32725d90e376eb426/environment/dev/docker-compose.yml#L28) and
+[production](https://github.com/allihoppa/allihoppa.nl/blob/4e061496f8d489a00c0d1cf32725d90e376eb426/environment/prod/docker-compose.yml#L43)*
+
+---
+
+*Thanks 
+[@n0x13](https://twitter.com/n0x13) and 
+[@allihoppa](https://twitter.com/alli_hoppa)
+for reviewing this post*
 
