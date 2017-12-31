@@ -10,7 +10,7 @@ tags:
 
 _This article is part of a [series of blog posts](/blog/tags/docker-festival/) related to the 
 [Docker Festival](https://twitter.com/hashtag/dockerfestival?src=hash) workshop
-[Matthias Noback](https://twitter.com/matthiasnoback) and I will be doing at
+[Matthias Noback](https://twitter.com/matthiasnoback) and I did at
 [Dutch PHP Conference 2017](https://www.phpconference.nl/)_
 
 ## Running a (read: just one) web application in Docker is easy.
