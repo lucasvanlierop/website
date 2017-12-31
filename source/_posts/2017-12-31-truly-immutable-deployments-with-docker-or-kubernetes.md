@@ -1,6 +1,5 @@
     ---
-draft: true
-title: Truly Immutable deployments with Docker Swarm & Kubernetes. 
+title: Truly Immutable deployments with Docker or Kubernetes. 
 categories: 
     - software-development
 tags: 
