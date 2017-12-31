@@ -1,6 +1,6 @@
     ---
 draft: true
-title: Running (Linux) containers with immutable file systems in Docker Compose, Docker Swarm & Kubernetes. 
+title: Truly Immutable deployments with Docker Swarm & Kubernetes. 
 categories: 
     - software-development
 tags: 
@@ -12,63 +12,54 @@ tags:
     - security
 ---
 
-Target audience: developers who (are planning to) run containers in production.
+__Target audience:__ developers who (are planning to) run containers in production.
 
-TL;DR Run your containers with an immutable file system, its more secure and predictable!
+TL;DR Deploy your containers with an immutable file system, its more secure and predictable!
 
 ---
+
 <span class="header-image">![Just a random picture of a locked door](/images/blog/software/locked-door.jpg)</span>
-## What are the advantages of a container with an immutable file system? 
 
-Because of predictability! When any kind of change is applied to a running system there's always a chance that besides fixing a bug or adding a feature something else unexpectedly breaks.
+## Deploying should be boring a.k.a. predictable, what does that look like?
 
-But let's look ad some disadvantages of various deployment strategies first:
+For me boring means it's predictable, which means the deployment process provides some guarantees, such as:
 
-Over the years development and deployment strategies of (web) applications have evolved a lot. 
-Each evolution made the process a bit more more predictable and secure but still had some disadvantages.
+- <i class="fa fa-check-square" style="color: green"></i> it's obvious which code has been deployed *(e.g. can be related to a commit in version control)*
+- <i class="fa fa-check-square" style="color: green"></i> deployed code behaves as expected *(asserted by tests)*
+- <i class="fa fa-check-square" style="color: green"></i> deployed code is fully compatible with the stack it runs on *(asserted by tests)*.
+- <i class="fa fa-check-square" style="color: green"></i> all of the above do not change once deployed
 
+For now I'd like to focus on the last item, I'll probably write an article on setting up an automated build and test pipeline later. 
 
-In the old days developers used to edit files directly on servers or synced them from a development machine using SFTP, Rsync etc. 
-There was no real separation between development and deployment at all. 
-There were no guarantees on:
+## How predictable are deployment processes nowadays? 
 
-- <i class="fa fa-times" style="color: red"></i> which code was deployed
-- <i class="fa fa-times" style="color: red"></i> deployed code has been verified to work as expected
-- <i class="fa fa-times" style="color: red"></i> deployed code is fully compatible with the stack it runs on.
-- <i class="fa fa-times" style="color: red"></i> deployed code is has not been tampered with
+Deployment practices have come along way since 'the old days' where developers used to edit (hack) files directly on servers without any form of testing.
 
-After a while version control systems were used and code was deployed by checking out the latest version on a server.
-This at least provided guarantees on:
+In today's container era all of above guarantees can be provided by CI pipelines that build, test and deploy code + infrastructure automatically from version control.
+This does not mean they ARE always provided, in fact many deployment processes guarantee:
 
-- <i class="fa fa-check-square" style="color: green"></i> which code was deployed
-
-Then fully automatic pipelines that could build and test applications before deploying them became more common.
-This provides guarantees on:
- 
-- <i class="fa fa-check-square" style="color: green"></i> which code was deployed
-- <i class="fa fa-check-square" style="color: green"></i> deployed code has been verified to work as expected
- 
-Now with the arrival of container technologies it's possible to go one step further and package the application, 
-its runtime and all of its dependencies into one deployable artifact a.k.a. a container image.
-This allows testing the entire stack in a build pipeline and gives us many guarantees (but not all)
-
-- <i class="fa fa-check-square" style="color: green"></i> which code was deployed
-- <i class="fa fa-check-square" style="color: green"></i> deployed code has been verified to work as expected
+- <i class="fa fa-check-square" style="color: green"></i> it's obvious which code has been deployed
+- <i class="fa fa-check-square" style="color: green"></i> deployed code behaves as expected
 - <i class="fa fa-check-square" style="color: green"></i> deployed code is fully compatible with the stack it runs on.
 
-While this is great there's still one issue. What if something in the container changes after it has been deployed?
-Changes to a running container can happen either by accident or as part of a hacking attempt. 
-Whatever the cause if something is changed, the guarantees we had earlier are lost. 
+But still don't guarantee:
 
-The good news is that this can be prevented fairly easy by just starting the container with an immutable (read only) file system. 
-In practice this means your application, its configuration and basically everything else that's in the container can NOT be changed.
+- <i class="fa fa-times" style="color: red"></i> all of the above do not change once deployed
 
-- <i class="fa fa-check-square" style="color: green"></i> which code was deployed
-- <i class="fa fa-check-square" style="color: green"></i> deployed code has been verified to work as expected
-- <i class="fa fa-check-square" style="color: green"></i> deployed code is fully compatible with the stack it runs on.
-- <i class="fa fa-check-square" style="color: green"></i> deployed code has not been tampered with
+## How to make a deployment even more predictable with immutable containers
 
-Since many containerized projects do not make use of immutable containers yet I'd like to share some examples on how this can be configured in some of the common orchestration tools. 
+Let's take a look a some reasons that can cause changes in code or configuration after a deployment. 
+
+- Hacking attempts that change the application or even download scripts 
+- Bugs in the application that write files to an incorrect path
+- Frameworks that generate code for caching purposes (common practice with non compiled languages)
+- Automatic updates
+
+Even if some of these changes are desired, they are not tested and therefore unpredictable. Any guarantees provided by the build/test/deployment process can no longer be trusted. If possible these should be part of the build process rather than happen after deployment. Especially updates since they would be gone when a new version is deployed anyway.
+ 
+The good news is that changes can be prevented fairly easy by just starting the container with an immutable (read only) file system. 
+In practice this means an application, its configuration and basically everything else that's in the container can NOT be changed.
+Let's see some examples on how to configure this in Docker & Kubernetes.
 
 ## Example #1 Configuring immutable containers in Docker Compose (version 3) and Docker Swarm
 
@@ -93,11 +84,12 @@ For example a temporary directory for storing file uploads might be necessary.
 Of course the final uploaded files should be stored in a persistent volume. 
 Another example might be processes like Apache HTTP server that want to store their process id in a [`pid` file](https://linux.die.net/man/3/pidfile).
 
-This could be solved by mounting a writable file or directory from the local file system into the container. 
+This of course could be solved by mounting a writable file or directory from the local file system into the container. 
 However since there's no need to persist these files they can be written to memory instead of disk.
  
 Docker Compose supports temporary volumes in memory.
 In this example a writable directory named `/var/run` will be available in the container.  
+*Note: it goes without saying that these kind of exclusions should be used as little as possible!*
 
 ```yaml
 version: '3'
@@ -164,14 +156,13 @@ spec:
 
 ## Rounding up
 
+- *Do all containers need to have an immutable file system?*
+Of course this is up to you. I would recommend that at least containers where scripts/binaries can be executed should be immutable. So web and application servers and maybe even database servers.
+
 - *Should development containers have an immutable file system too?*
 Not necessarily since it's a mainly security measure for production situations.
-However it's better to have a similar setup across all environments so possible issues can be spotted before going to production. 
+However it's better to have a similar setup across all environments so possible issues can be spotted before going to production.
 
-- *Do all containers need to have an immutable file system?*
-In general I would recommend to at least make containers where scripts/applications should be immutable. So web and application servers and maybe even database servers.
-And yes: unexpected code execution should not be possible at all, query parameters should be escaped etc. 
-but as with all security measures it's [Defense in depth](https://en.wikipedia.org/wiki/Defense_in_depth_(computing)) that makes a system more secure.
 
 *FYI: The examples above are taken from a legacy WordPress project. Since I'm not a WordPress expert at all I intentionally run it in an immutable container to reduce the attack vector and 
 to prevent unplanned automatic updates from happening. For some more context check the full Docker Compose config at the time of writing for both 
@@ -185,4 +176,3 @@ to prevent unplanned automatic updates from happening. For some more context che
 [Annelies](https://twitter.com/alli_hoppa) and
 [Caroline](https://twitter.com/erzitkaktussen)
 for reviewing this post*
-
