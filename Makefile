@@ -69,6 +69,10 @@ docker/app/.built: \
 up: output_dev
 	docker-compose up
 
+.PHONY: down
+down:
+	docker-compose down
+
 .PHONY: test
 test: docker/app/.built
 	docker-compose -f ${CI_FILE} up -d --no-build --force-recreate --remove-orphans
