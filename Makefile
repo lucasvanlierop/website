@@ -1,3 +1,4 @@
+TARGET=$@
 SHELL=/bin/bash
 
 all: docker/app/.built
@@ -36,6 +37,9 @@ docker/sculpin/.built: docker/sculpin/*
 	docker-compose -f ${CI_FILE} build sculpin
 	touch $@
 
+output_dev:
+	mkdir -p $(TARGET)
+
 # todo fix source/*
 .DELETE_ON_ERROR: output_prod
 output_prod: \
@@ -62,7 +66,7 @@ docker/app/.built: \
 	touch $@
 
 .PHONY: start
-start:
+start: output_dev
 	docker-compose up
 
 .PHONY: test
