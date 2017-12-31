@@ -65,8 +65,8 @@ docker/app/.built: \
 	docker-compose -f ${CI_FILE} build app
 	touch $@
 
-.PHONY: start
-start: output_dev
+.PHONY: up
+up: output_dev
 	docker-compose up
 
 .PHONY: test
