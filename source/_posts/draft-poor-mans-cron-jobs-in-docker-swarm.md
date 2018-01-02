@@ -1,9 +1,8 @@
 ---
 draft: true
 layout: default
-title: Pushing Docker Images From The CI
+title: Poor mans cron jobs in Docker Swarm
 categories: 
     - software-development
 ---
 Todo
-
