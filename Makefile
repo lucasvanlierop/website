@@ -75,7 +75,7 @@ test: docker/app/.built
 	tests/validate-html.sh
 	docker-compose -f $(CI_FILE) stop
 
-DOCKER_TUNNEL_CONTAINER=DOCKER_SWARM_HOST_ssh_tunnel
+DOCKER_TUNNEL_CONTAINER=docker_swarm_ssh_tunnel
 DOCKER_TUNNEL_PORT=12374
 DOCKER_SWARM_HOST=lucasvanlierop.nl
 DOCKER_TUNNEL_USER=deploy
