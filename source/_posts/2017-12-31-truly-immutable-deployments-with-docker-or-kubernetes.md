@@ -1,4 +1,4 @@
-    ---
+---
 title: Truly Immutable deployments with Docker or Kubernetes. 
 categories: 
     - software-development
