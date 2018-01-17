@@ -95,7 +95,7 @@ deploy:
 		$(DOCKER_TUNNEL_USER)@$(DOCKER_SWARM_HOST)
 
 	# Wait until tunnel is available
-	until docker -H localhost:$(DOCKER_TUNNEL_PORT) version --format '{{.Server.Version}}' 2>/dev/null 1>/dev/null > /dev/null; do \
+	until docker -H localhost:$(DOCKER_TUNNEL_PORT) version 2>/dev/null 1>/dev/null > /dev/null; do \
 		echo "Waiting for docker tunnel"; \
 		sleep 1; \
 	done
