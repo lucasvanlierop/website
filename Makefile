@@ -79,3 +79,41 @@ test: docker/app/.built
 	tests/smoke-test.sh
 	tests/validate-html.sh
 	docker-compose -f ${CI_FILE} stop
+
+DOCKER_TUNNEL_CONTAINER=DOCKER_SWARM_HOST_ssh_tunnel
+DOCKER_TUNNEL_PORT=12374
+DOCKER_SWARM_HOST=lucasvanlierop.nl
+DOCKER_TUNNEL_USER=deploy
+DOCKER_STACK_FILE=env/prod/docker-compose.yml
+DOCKER_STACK_NAME=lucasvanlierop-website
+.PHONY: deploy
+.SILENT: deploy
+deploy:
+	# Create SSH tunnel to Docker Swarm cluster
+	docker run \
+		-d \
+		--name $(DOCKER_TUNNEL_CONTAINER) \
+		-p $(DOCKER_TUNNEL_PORT):$(DOCKER_TUNNEL_PORT) \
+		-v $(SSH_AUTH_SOCK):/ssh-agent \
+		kingsquare/tunnel \
+		*:$(DOCKER_TUNNEL_PORT):/var/run/docker.sock \
+		$(DOCKER_TUNNEL_USER)@$(DOCKER_SWARM_HOST)
+
+	# Wait until tunnel is available
+	until docker -H localhost:$(DOCKER_TUNNEL_PORT) version --format '{{.Server.Version}}' 2>/dev/null 1>/dev/null > /dev/null; do \
+		echo "Waiting for docker tunnel"; \
+		sleep 1; \
+	done
+
+	# Deploy
+	docker \
+		-H localhost:$(DOCKER_TUNNEL_PORT) \
+		stack deploy \
+		--with-registry-auth \
+		-c $(DOCKER_STACK_FILE) \
+		--prune \
+		$(DOCKER_STACK_NAME)
+
+	# Close tunnel
+	docker stop $(DOCKER_TUNNEL_CONTAINER)
+	docker rm $(DOCKER_TUNNEL_CONTAINER)
