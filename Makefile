@@ -1,5 +1,6 @@
 TARGET=$@
 SHELL=/bin/bash
+.DELETE_ON_ERROR:
 
 all: docker/app/.built
 
@@ -21,18 +22,15 @@ clean:
 	rm -rfv source/css/*
 	rm -rfv output_prod/*
 
-.DELETE_ON_ERROR: source/css/pygments.css
 source/css/pygments.css: docker/sculpin/.built
 	docker-compose -f $(CI_FILE) run --rm sculpin sh \
 		bin/generate-pygments-css
 
-.DELETE_ON_ERROR: docker/sass/.built
 docker/sass/.built: \
 	$(shell find docker/sass/* | grep .built)
 	docker-compose -f $(CI_FILE) build sass
 	touch $@
 
-.DELETE_ON_ERROR: docker/sculpin/.built
 docker/sculpin/.built: docker/sculpin/*
 	docker-compose -f $(CI_FILE) build sculpin
 	touch $@
@@ -41,7 +39,6 @@ output_dev:
 	mkdir -p $(TARGET)
 
 # todo fix source/*
-.DELETE_ON_ERROR: output_prod
 output_prod: \
 	$(shell find source/) \
 	source/css \
@@ -50,7 +47,6 @@ output_prod: \
 	docker-compose -f $(CI_FILE) run --rm sculpin vendor/bin/sculpin generate \
 		--env=prod
 
-.DELETE_ON_ERROR: source/css
 source/css: \
 	docker/sass/.built \
 	source/css/pygments.css \
@@ -58,7 +54,6 @@ source/css: \
 	docker-compose -f $(CI_FILE) run --rm sass --update /app/source/scss:/app/source/css
 	touch $@
 
-.DELETE_ON_ERROR: docker/app/.built
 docker/app/.built: \
 	docker/app/* \
 	output_prod
