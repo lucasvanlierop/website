@@ -171,5 +171,3 @@ For example you can require a specific PHP version or extensions to be installed
 Running CLI tools in Docker is pretty doable but you have to be aware of certain pitfalls.
 
 I hope I have encouraged you to run your developer tools on the same stack your application runs on.
-
-<a href="https://www.bloglovin.com/blog/18961625/?claim=uxf62ru8yuj">Follow my blog with Bloglovin</a>
