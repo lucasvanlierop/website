@@ -1,6 +1,6 @@
 ---
 draft: true
-title: Deploy to Docker Swarm over SSH
+title: Continuous Docker (Swarm) deployment over SSH.
 categories: 
     software-development
 tags: 
@@ -10,35 +10,72 @@ tags:
     - docker-swarm
 ---
 
-BRamm
+__Target audience:__ Developers who want to start with continuously deploying Docker applications.
 
+TL;DR: Use Docker Swarm rather then Docker Compose for production, deploy via an SSH tunnel.
 
-## Why Docker Compose isn't ideal for deploying to production.
-Many projects start life in a Docker Compose based development setup but a given moment they must be deployed to production.
+---
 
-Since Docker Compose isn't really meant for production usage, the closest option is Docker Swarm which is built in Docker for a while now.
+This article assumes the following:
 
-While it's possible to use Docker Compose for production deployments its not ideal.  
-For example some projects copy docker-compose config files (and everything they refer to) to the remote server.
-Also Docker Compose  does not support multiple hosts which means if the application has to run on multiple servers it has to be deployed to every server.
-Also if one server fails another server doesn't know about that and can't take over some of it's jobs even if it has enough
-resources to do so.
+- A server with [Docker installed](https://docs.docker.com/engine/installation/) is already available
+- A CI server that automatically builds every commit (I might write an article about that sometime).
 
-Luckily Docker has a better option built in called Swarm which can achieve all of the above.
-Since this article is mostly about how to deploy to a remote Swarm server/cluster I won't go imnto detail about Swarm itself.
+When above conditions are met continuous deployment with Docker basically comes to down to:
+- Define which services should run e.g. in a `docker-compose.yml` file.
+- Define environment specific config either in a `docker-compose.yml` file or in a separate `*.env` file.
+- Tell the server to start/update these services with the specified config.
 
-## Accessing the remote Swarm
-Docker Swarm (by default) uses a socket (`/var/run/docker`) to communicate with the Docker Engine.
-Since this socket lives on a remote server and the Docker Client lives on a development or CI machine some form of communication has to be established.
+## Why Docker Swarm is better suited for deploying to production than Docker Compose. 
 
-## Accessing the remote Swarm via a port?
-While Docker can run on a port too there's not really a need to configure that and to open firewall ports etc.
+Many Docker projects start life as a Docker Compose based development setup. 
+A common first approach to deploy the application to a production server is to use Docker Compose for that too.
+And while that is possible Docker has a better alternative built in named: [Swarm](https://docs.docker.com/get-started/part4/)
+which - *from a deployment perspective* - works very similar to Docker Compose but has more advanced orchestration capabilities.
+
+Compared to Docker Compose, Docker Swarm has the following advantages:
+- It doesn't require installing additional tools.
+- It doesn't require files like `docker-compose.yml`, `*.env` to be copied to the remote server.
+- It supports multiple servers for high availability (or just to provide more resources).
+
+Alternatively to Docker Swarm there are of course orchestrators like 
+[Kubernetes](https://kubernetes.io/) 
+or [DC/OS Marathon](https://mesosphere.com/blog/marathon-production-ready-containers/) 
+but Docker Swarm is still the easiest production ready Docker orchestration tool to start with.
+ 
+## Step 1, preparing a server for use with Docker Swarm.
+
+When a multi server ('node' in Docker Swarm speak) setup is desired a bit more is required (read the [docs]([Swarm](https://docs.docker.com/get-started/part4/))
+
+But to converting an existing Docker (1.13+) server into a Swarm node all that needs to be done is run the following command on the server:
+```bash
+docker swarm init
+```
+
+*Note: if containers started by `docker(-compose)` are already running on the host the need to be stopped and restarted via `docker stack deploy`.*
+
+## Step 2 Accessing the remote Docker API from a CI server
+Docker has an HTTP API but not everyone (or their system administrator) wants to expose yet another port to the outside world.
+Also the Docker API requires setting up TLS certificates.
+Docker has a tool named ['Machine'](https://docs.docker.com/machine/) that can manage those certificates however Machine comes with it's own configuration which along with the certificates isn't very portable.
+
+Another solution is to access the Docker socket over SSH. Since SSH suports public key authentication continuous deployment from a CI server only requires setting up one secret: the private key of a deploy user.
 Instead it's possible to tunnel the port over SSH.
 
 There's one gotcha though this only works on SSHv7+ while most older OSes are stuck on SSHv6. 
 However there's no need for updating since you can run an [SSH tunnel in Docker]([Docker SSH Tunnel image](https://hub.docker.com/r/kingsquare/tunnel/)) too.
 
+## Step 3 deploying with stack
+
+## Step 3, forget about the API just use let the Docker socket come to you over SSH!
+Use an SSH tunnel to the machine.
+
+#But about passwords etc?
+Secrets can be stored in [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/) rather than in files.
+
 Below an example of how
+
+...SHELL, docker login etc.
 
 ```makefile
 DOCKER_TUNNEL_CONTAINER=DOCKER_SWARM_HOST_ssh_tunnel
@@ -80,9 +117,24 @@ deploy:
     docker rm $(DOCKER_TUNNEL_CONTAINER)
 ```
 
-__NOTE__ if you copy (parts of) above script make sure to convert SPACE to TABS since Make doesn't like spaces 
+
+## But should I expose SSH?
+<blockquote class="twitter-tweet" data-lang="nl"><p lang="en" dir="ltr">Don&#39;t install SSH in prod 😀😀 <a href="https://t.co/2pjAoWPhK6">https://t.co/2pjAoWPhK6</a></p>&mdash; David McKay (@rawkode) <a href="https://twitter.com/rawkode/status/943193815342571520?ref_src=twsrc%5Etfw">19 december 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Well that's a fair point to think about, off course SSH gives way more than just the Docker API.
+On the other hand if you don't use it to make changes to the server #immutabilityFTW and just for deployment I think it's ok.
 
 
-Thanks [Robin](https://twitter.com/fruitl00p) for creating this awesome [Docker SSH Tunnel image](https://hub.docker.com/r/kingsquare/tunnel/)
+
+- __NOTE:__ if you copy (parts of) above script make sure to convert SPACE to TABS since Make doesn't like spaces 
+...- __NOTE:__ Above setup is known to work on Debian like distros, Red Hat like distros do not seem to have a `SSH_AUTH_SOCK` environment variable. If you know how 
 
 To see this in more context check [the `Makefile` at the time of writing this article](https://github.com/lucasvanlierop/website/blob/2c549d0c94143b38fa96c9d4a972f073af889b8a/Makefile#L86)
+
+---
+
+Thanks 
+[Robin](https://twitter.com/fruitl00p) for creating this awesome [Docker SSH Tunnel image](https://hub.docker.com/r/kingsquare/tunnel/) 
+and [Bram](https://twitter.com/Brammm) for triggering to finally write this article.
+
