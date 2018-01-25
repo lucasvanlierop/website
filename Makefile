@@ -109,6 +109,13 @@ DOCKER_STACK_NAME=lucasvanlierop-website
 .SILENT: deploy
 deploy:
 	$(TARGET_MARKER_START)
+
+	# Create file Where Traefik can store it's certificates
+	ssh $(DOCKER_TUNNEL_USER)@$(DOCKER_SWARM_HOST) "(umask 600; touch /opt/traefik/acme.json)"
+
+	# Copy Traefik config file (Todo: this should be Swarm secret since this does not trigger a restart)
+	scp env/prod/traefik.toml $(DOCKER_TUNNEL_USER)@$(DOCKER_SWARM_HOST):/opt/traefik/traefik.toml
+
 	# Create SSH tunnel to Docker Swarm cluster
 	docker run \
 		-d \
