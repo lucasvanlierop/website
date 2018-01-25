@@ -3,13 +3,14 @@ version: '3'
 services:
   # Should be moved to a separate repo
   ingress:
-    image: traefik:1.3-alpine
-    command: --docker --debug --docker.exposedbydefault=false --logLevel=DEBUG
+    image: traefik:1.5-alpine
     ports:
       - 80:80
+      - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /dev/null:/traefik.toml
+      - /opt/traefik/traefik.toml:/traefik.toml
+      - /opt/traefik/acme.json:/acme.json
 
   app:
     image: lucasvanlierop/website
