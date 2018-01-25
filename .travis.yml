@@ -2,9 +2,16 @@ env:
   global:
     - HOST_UID=$UID
     - HOST_GID=$GID
+    - TRAVIS=on
 
 services:
   - docker
+
+before_script:
+  - export -f travis_nanoseconds
+  - export -f travis_fold
+  - export -f travis_time_start
+  - export -f travis_time_finish
 
 script:
   - make test
