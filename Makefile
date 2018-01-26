@@ -102,37 +102,17 @@ test: docker/app/.built
 DOCKER_TUNNEL_CONTAINER=docker_swarm_ssh_tunnel
 DOCKER_TUNNEL_PORT=12374
 DOCKER_SWARM_HOST=lucasvanlierop.nl
-DOCKER_TUNNEL_USER=deploy
+DEPLOY_USER=deploy
 DOCKER_STACK_FILE=env/prod/docker-compose.yml
 DOCKER_STACK_NAME=lucasvanlierop-website
+
 .PHONY: deploy
 .SILENT: deploy
-deploy:
+deploy: \
+	traefik-production-certificate-store \
+	traefik-production-config \
+	tunnel-to-production-docker-socket
 	$(TARGET_MARKER_START)
-
-	# Create file Where Traefik can store it's certificates
-	ssh $(DOCKER_TUNNEL_USER)@$(DOCKER_SWARM_HOST) "(umask 600; touch /opt/traefik/acme.json)"
-
-	# Copy Traefik config file (Todo: this should be Swarm secret since this does not trigger a restart)
-	scp env/prod/traefik.toml $(DOCKER_TUNNEL_USER)@$(DOCKER_SWARM_HOST):/opt/traefik/traefik.toml
-
-	# Create SSH tunnel to Docker Swarm cluster
-	docker run \
-		-d \
-		--name $(DOCKER_TUNNEL_CONTAINER) \
-		-p $(DOCKER_TUNNEL_PORT):$(DOCKER_TUNNEL_PORT) \
-		-v $(SSH_AUTH_SOCK):/ssh-agent \
-		kingsquare/tunnel \
-		*:$(DOCKER_TUNNEL_PORT):/var/run/docker.sock \
-		$(DOCKER_TUNNEL_USER)@$(DOCKER_SWARM_HOST)
-
-	# Wait until tunnel is available
-	until docker -H localhost:$(DOCKER_TUNNEL_PORT) version 2>/dev/null 1>/dev/null > /dev/null; do \
-		echo "Waiting for docker tunnel"; \
-		sleep 1; \
-	done
-
-	# Deploy
 	docker \
 		-H localhost:$(DOCKER_TUNNEL_PORT) \
 		stack deploy \
@@ -140,8 +120,40 @@ deploy:
 		-c $(DOCKER_STACK_FILE) \
 		--prune \
 		$(DOCKER_STACK_NAME)
+	$(TARGET_MARKER_END)
 
-	# Close tunnel
-	docker stop $(DOCKER_TUNNEL_CONTAINER)
-	docker rm $(DOCKER_TUNNEL_CONTAINER)
+.PHONY: traefik-production-certificate-store
+.SILENT: traefik-production-certificate-store
+traefik-production-certificate-store:
+	$(TARGET_MARKER_START)
+	# Create file Where Traefik can store it's certificates
+	ssh $(DEPLOY_USER)@$(DOCKER_SWARM_HOST) "(umask 600; touch /opt/traefik/acme.json)"
+	$(TARGET_MARKER_END)
+
+.PHONY: traefik-production-config
+.SILENT: traefik-production-config
+traefik-production-config:
+	$(TARGET_MARKER_START)
+	# Copy Traefik config file (Todo: this should be Swarm secret since this does not trigger a restart)
+	scp env/prod/traefik.toml $(DEPLOY_USER)@$(DOCKER_SWARM_HOST):/opt/traefik/traefik.toml
+	$(TARGET_MARKER_END)
+
+.SILENT: tunnel-to-production-docker-socket
+tunnel-to-production-docker-socket:
+	$(TARGET_MARKER_START)
+	# Create SSH tunnel to Docker Swarm cluster
+	@(docker ps | grep $(DOCKER_TUNNEL_CONTAINER)) || docker run \
+		-d \
+		--name $(DOCKER_TUNNEL_CONTAINER) \
+		-p $(DOCKER_TUNNEL_PORT):$(DOCKER_TUNNEL_PORT) \
+		-v $(SSH_AUTH_SOCK):/ssh-agent \
+		kingsquare/tunnel \
+		*:$(DOCKER_TUNNEL_PORT):/var/run/docker.sock \
+		$(DEPLOY_USER)@$(DOCKER_SWARM_HOST)
+
+	# Wait until tunnel is available
+	until docker -H localhost:$(DOCKER_TUNNEL_PORT) version 2>/dev/null 1>/dev/null > /dev/null; do \
+		echo "Waiting for docker tunnel"; \
+		sleep 1; \
+	done
 	$(TARGET_MARKER_END)
