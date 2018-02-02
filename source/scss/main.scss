@@ -255,7 +255,27 @@ article {
     }
 }
 
+.blog {
+    h3 {
+        clear: both;
+
+        .image {
+            display: block;
+            height: 100px;
+            width: 100px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            float: left;
+            margin-right: 20px;
+        }
+    }
+}
+
+
 code {
     background-color: #f6f8fa;
     border: solid 1px darkgray;
 }
+
+

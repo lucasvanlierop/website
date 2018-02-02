@@ -12,8 +12,10 @@ pagination:
     <meta name="robots" content="noindex, follow">
 {% endblock %}
 
+
 {% block title %}{{ page.title }} "{{ page.category }}"{% endblock %}
 {% block content %}
+<div class="blog">
 {% set year = '0' %}
 <h2>"{{ page.category }}"</h2>
 {% for post in page.pagination.items %}
@@ -28,7 +30,12 @@ pagination:
   <h3>{{ month }} {{ year }}</h3>
 {% endif %}
 <article class="block">
-  <div><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></div>
+    <h3>
+        <div class="image" style="background-image:url('{{ post.image }}');"></div>
+        <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+    </h3>
+
+
     {% if post.meta.tags %}
     <p class="tags">
         Tags:
@@ -52,4 +59,6 @@ pagination:
     </nav>
 {% endif %}
 </div>
+</div>
 {% endblock content %}
+

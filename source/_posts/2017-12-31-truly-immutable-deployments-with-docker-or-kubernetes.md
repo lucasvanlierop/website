@@ -9,6 +9,8 @@ tags:
     - immutability
     - kubernetes
     - security
+image: /images/blog/software/locked-door.jpg
+imageAlt: "Just a random picture of a locked door"
 ---
 
 __Target audience:__ developers who (are planning to) run containers in production.
@@ -16,8 +18,6 @@ __Target audience:__ developers who (are planning to) run containers in producti
 TL;DR Deploy your containers with an immutable file system, its more secure and predictable!
 
 ---
-
-<span class="header-image">![Just a random picture of a locked door](/images/blog/software/locked-door.jpg)</span>
 
 ## Deploying should be boring a.k.a. predictable, what does that look like?
 

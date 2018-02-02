@@ -5,6 +5,8 @@ categories:
 tags: 
     - docker
     - docker-festival
+image: /images/blog/software/composer-in-docker.png
+imageAlt: Composer logo with containers in the background    
 ---
 
 _This article is part of a [series of blog posts](/blog/tags/docker-festival/) related to the 

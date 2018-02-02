@@ -6,6 +6,8 @@ tags:
     - docker
     - docker-festival
     - traefik
+image: images/blog/software/traefik-header-image.png
+imageAlt: "Træfɪk architecture, courtesy of traefik.io"
 ---
 
 _This article is part of a [series of blog posts](/blog/tags/docker-festival/) related to the 

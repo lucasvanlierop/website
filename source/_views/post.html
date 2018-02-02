@@ -9,6 +9,9 @@
         <header>
             <h1 class="palette-petrol">{{ page.title }}</h1>
         </header>
+        <div class="header-image">
+             <img src="{{ page.image }}" alt="{{ page.imageAlt }}" />
+        </div>
         <div>
             {{ page.blocks.content|raw }}
         </div>

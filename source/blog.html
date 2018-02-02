@@ -14,6 +14,7 @@ use:
 {% endfor %}
 </ul>
 
+<div class="blog">
 {% set year = '0' %}
 <h2>Posts Archive</h2>
 {% for post in page.pagination.items %}
@@ -25,11 +26,23 @@ use:
 {% set this_month %}{{ post.date | date("F") }}{% endset %}
 {% if month != this_month %}
   {% set month = this_month %}
-  <h3>{{ month }} {{ year }}</h3>
+<h3>{{ month }} {{ year }}</h3>
 {% endif %}
-  <div>
-    <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
-  </div>
+<article class="block">
+    <h3>
+        <div class="image" style="background-image:url('{{ post.image }}');"></div>
+        <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+    </h3>
+
+{% if post.meta.tags %}
+<p class="tags">
+    Tags:
+    {% for tag in post.meta.tags %}
+    <a href="{{ site.url }}/blog/tags/{{ tag|url_encode(true) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+    {% endfor %}
+</p>
+{% endif %}
+</article>
 {% endfor %}
 
 <div>
@@ -43,4 +56,5 @@ use:
     {% endif %}
     </nav>
 {% endif %}
+</div>
 </div>
