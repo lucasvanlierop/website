@@ -1,6 +1,7 @@
 export HOST_UID=$(shell id -u)
 export HOST_GID=$(shell id -g)
 
+PLATFORM := $(shell uname -s)
 ifeq ($(PLATFORM),Darwin)
 export DOCKER_HOST_IP_OR_NAME = docker.for.mac.localhost
 else ifeq ($(PLATFORM),Linux)
