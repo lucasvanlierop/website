@@ -208,4 +208,7 @@ To see this in more context check [the deploy setup of this site at the time of 
 [Robin](https://twitter.com/fruitl00p) for creating this awesome [Docker SSH Tunnel image](https://hub.docker.com/r/kingsquare/tunnel/) 
 and [Bram](https://twitter.com/Brammm) for triggering to finally write this article.*
 
-*Thanks [Annelies](https://twitter.com/alli_hoppa) for reviewing this post*
+*Thanks 
+[Annelies](https://twitter.com/alli_hoppa) and
+[Bram](https://twitter.com/Brammm)
+for reviewing this post*
