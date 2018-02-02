@@ -18,7 +18,7 @@ __Target audience:__ Developers who want to (continuously) deploy their Dockeriz
 
 Many Docker projects start life as a Docker Compose based development setup. 
 At a given moment these projects need to be deployed to production. 
-This article will explain an alternative way of connection a remote Docker server/cluster using SSH instead of the Docker HTTP API.
+This article will explain an alternative way deploying to a remote Docker server/cluster using the Docker socket and SSH instead of the Docker HTTP API.
 
 ## Why deploy Dockerized applications over SSH instead of directly via the API?
 *Disclaimer this article doesn't say you MUST but you COULD deploy over SSH.*
@@ -62,7 +62,7 @@ Swarm - *from a deployment perspective* - works very similar to Docker Compose b
 
 Compared to Docker Compose, Docker Swarm has the following advantages:
 
-- It doesn't require installing Docker Compose the server
+- It doesn't require installing Docker Compose on the server
 - It doesn't require files like `docker-compose.yml`, `*.env` to be copied to the remote server
 - It supports multiple servers for high availability (or just to provide more resources)
 - It supports storing [secrets](https://docs.docker.com/engine/swarm/secrets/) for e.g. credentials that cannot be provided as an environment variable
