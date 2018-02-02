@@ -160,9 +160,12 @@ tunnel-to-production-docker-socket:
 		*:$(DOCKER_TUNNEL_PORT):/var/run/docker.sock \
 		$(DEPLOY_USER)@$(DOCKER_SWARM_HOST)
 
-	# Wait until tunnel is available
+	timeout 10 $(MAKE) wait-for-tunnel-to-production-docker-socket
+
+	$(TARGET_MARKER_END)
+
+wait-for-tunnel-to-production-docker-socket:
 	until docker -H localhost:$(DOCKER_TUNNEL_PORT) version 2>/dev/null 1>/dev/null > /dev/null; do \
 		echo "Waiting for docker tunnel"; \
 		sleep 1; \
 	done
-	$(TARGET_MARKER_END)
