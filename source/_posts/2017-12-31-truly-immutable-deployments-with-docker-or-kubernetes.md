@@ -129,6 +129,8 @@ app:
 In Kubernetes an immutable file system can be configured as part of a deployment security context. 
 Instead of Docker's tmpfs a volume of the type `emptyDir` must be configured.
 
+*Note: as Slava points out in the comments Kubernetes even supports [enforcing the use of read only file systems](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#volumes-and-file-systems)*
+
 ```yaml
 apiVersion: apps/v1beta1
 kind: Deployment
