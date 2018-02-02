@@ -32,7 +32,7 @@ services:
       file: env/default/docker-compose.yml
       service: sculpin
     environment:
-      XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_IP}"
+      XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_IP_OR_NAME}"
       PHP_IDE_CONFIG: "serverName=lucasvanlierop.nl.localhost"
     command: |
       sh -c ' \
