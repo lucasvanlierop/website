@@ -7,7 +7,9 @@
         <title>
             {{ page.name }} {{ page.title }}
         </title>
+        {% block head_meta %}
         <meta name="description" content="Lucas van Lierop is a freelance software developer who is specialized in creating, refactoring or containerizing (web) applications" />
+        {% endblock %}
         <link rel="shortcut icon" href="favicon.ico">
         <link rel="stylesheet" href="css/normalize.css"/>
         <link rel="stylesheet" href="css/main.css"/>

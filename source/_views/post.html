@@ -1,7 +1,14 @@
 {% extends "default" %}
 
 {% block head_meta %}
+    <meta name="description" content="{{ page.title }} by Lucas van Lierop freelance software developer" />
     <meta name="robots" content="index, follow">
+    <meta name="twitter:card" content="{{ page.title }}" />
+    <meta name="twitter:site" content="@lucasvanlierop" />
+    <meta name="twitter:creator" content="@lucasvanlierop" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta property="og:image" content="{{ site.url }}{{ page.image }}" />
 {% endblock %}
 
 {% block content_wrapper %}
