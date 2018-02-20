@@ -1,3 +1,8 @@
+SHELL=/bin/bash
+.DELETE_ON_ERROR:
+
+TARGET=$@
+
 export HOST_UID=$(shell id -u)
 export HOST_GID=$(shell id -g)
 
@@ -8,9 +13,6 @@ else ifeq ($(PLATFORM),Linux)
 export DOCKER_HOST_IP_OR_NAME=$(shell ip -f inet addr show docker0 | grep -Po 'inet \K[\d.]+')
 endif
 
-TARGET=$@
-SHELL=/bin/bash
-.DELETE_ON_ERROR:
 
 include make/travis.mk
 
