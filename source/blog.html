@@ -35,11 +35,12 @@ use:
     </h3>
 
 {% if post.meta.tags %}
-<p class="tags">
-    Tags:
+<p>
     {% for tag in post.meta.tags %}
     <a href="{{ site.url }}/blog/tags/{{ tag|url_encode(true) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
     {% endfor %}
+    |
+    {{ post.date | date("Y, F jS") }}
 </p>
 {% endif %}
 </article>

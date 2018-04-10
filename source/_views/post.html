@@ -23,6 +23,7 @@
         <div class="header-image">
              <img src="{{ page.image }}" alt="{{ page.imageAlt }}" />
         </div>
+        <span>{{ post.date | date("Y, F jS") }}</span>
         <div>
             {{ page.blocks.content|raw }}
         </div>
