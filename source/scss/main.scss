@@ -224,6 +224,7 @@ abbr[title] {
 
 figure.code-highlight-figure {
     margin: 0;
+    overflow-x: scroll;
 
     .highlight {
         padding: 10px;
@@ -277,5 +278,3 @@ code {
     background-color: #f6f8fa;
     border: solid 1px darkgray;
 }
-
-
