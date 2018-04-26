@@ -132,7 +132,7 @@ This requires wrapping the loop in a separate bash script (or make target)*
  
 ## Step 4: deploying with `docker stack deploy`
 
-Once an SSH tunnel has been established Docker can use it to deploy the stack to a remote Swarm node:
+Once a SSH tunnel has been established Docker can use it to deploy the stack to a remote Swarm node:
 
 ```bash
 DOCKER_STACK_FILE={path/to/docker-compose.yml}
