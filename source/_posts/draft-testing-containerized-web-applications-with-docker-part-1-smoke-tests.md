@@ -2,11 +2,12 @@
 draft: true
 title: Testing containerized web applications with Docker part 1: Smoke tests
 categories: 
-    software-development
+    - software-development
 tags: 
     - testing
     - docker
-    - docker-festival
+image: /images/blog/software/smoke-and-ashes.jpg
+imageAlt: Smoke and ashes
 ---
 
 _This article is part of a [series of blog posts](/blog/tags/docker-festival/) related to the 
