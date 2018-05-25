@@ -2,11 +2,15 @@
 draft: true
 layout: "default"
 name: "Electric Land Rover Discovery project"
-generator: [posts_category_index, pagination]
-pagination:
-    provider: page.category_posts
+
 ---
 
+[Component Overview](/projects/electric-discovery/component-overview)
+
+
+<!--generator: [posts_category_index, pagination]-->
+<!--pagination:-->
+<!--provider: page.category_posts-->
 
 I'm working on converting my a Land Rover Discovery from diesel to electric.
 
