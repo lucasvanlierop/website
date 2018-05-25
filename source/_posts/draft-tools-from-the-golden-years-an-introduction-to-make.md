@@ -20,7 +20,7 @@ Most of them aren't things you need to execute directly but mostly a requirement
 Make is very good in glueing all kinds of scripts and their requirements together.
 
 
-## But Make is very old, is it still useful?
+## But Make is very old, how can it still be useful?
 
 Yes Make is very old. I was really surprised when I found out how old it really was, 
 I knew it was from #backinthedays but [according to wikipedia](https://en.wikipedia.org/wiki/Make_(software))
@@ -103,6 +103,8 @@ do-something:
 Using `.PHONY` is almost like a code smell to me now. 
 In many cases it's better to use real target or [empty targets](https://www.gnu.org/software/make/manual/html_node/Empty-Targets.html)
 
+...overlooked
+
 ## The power of dependency resolving.
 Dependency (or pre-requisites as Make likes to call them) resolving might be the single most powerful feature of make.
 ...Make will create a graph of 
@@ -131,3 +133,6 @@ In most cases this is what you want because mixed output from multiple targets i
 
 
 Make isn't really good in Idempotency
+
+--- 
+Tnx Jessie, Jan
